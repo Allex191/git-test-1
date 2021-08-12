@@ -1,0 +1,16 @@
+body {
+  background-color: rgb(255, 255, 255);
+}
+
+#mocha {
+  position: relative;
+  width: 500px !important;
+}
+
+#mocha-stats {
+  position: relative;
+  min-height: 50px;
+  max-width: 300px;
+  margin-left: 50px !important;
+}
+/*# sourceMappingURL=mocha.css.map */
