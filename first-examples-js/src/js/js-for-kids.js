@@ -1767,7 +1767,7 @@ const idSym = Symbol("id");
 user[idSym] = 123;
 
 alert(user[idSym])
-*/
+
 
 //two different symbols
 const sym1 = Symbol("id")
@@ -1778,3 +1778,26 @@ sym1 === sym2  //false
 const sym3 = Symbol.for("id")
 const sym4 = Symbol.for("id")
 alert(sym3 === sym4) //true
+
+
+function showingAlert() {
+  alert("hey");
+}
+
+function outputName(name) {
+  alert(name);
+}
+
+showingAlert();
+outputName();
+
+ task3Element.addEventListener("click", outputName) 
+
+function combineStrings(nr1, nr2, nr3) {
+  return nr1 + " " + nr2 + " " + nr3 + " ";
+}
+
+const combinedString = combineStrings("hey", "you", "there");
+
+alert(combinedString);
+*/
