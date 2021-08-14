@@ -1800,4 +1800,8 @@ function combineStrings(nr1, nr2, nr3) {
 const combinedString = combineStrings("hey", "you", "there");
 
 alert(combinedString);
+
+let test= [2,5,6];
+console.log(test[0]);
+
 */
