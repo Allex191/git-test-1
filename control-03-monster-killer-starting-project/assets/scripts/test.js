@@ -11,12 +11,16 @@ const LOG_EVENT_MONSTER_ATTACK = "MONSTER_ATTACK";
 const LOG_EVENT_PLAYER_HEAL = "PLAYER_HEAL";
 const LOG_EVENT_GAME_OVER = "GAME_OVER";
 
-const enteredValue = prompt("Maximum life for the monster 10-500", "100");
-
-let chosenMaxLife = parseInt(enteredValue);
-if (isNaN(chosenMaxLife) || chosenMaxLife <= 10 || chosenMaxLife > 500) {
-  chosenMaxLife = 100;
+function getMaxLifeValues() {
+  const enteredValue = prompt("Maximum life for the monster 10-500", "100");
+  const parsedValue = parseInt(enteredValue);
+  if (isNaN(parsedValue) || parsedValue <= 10) {
+  }
+  return parsedValue;
 }
+
+let chosenMaxLife = getMaxLifeValues();
+
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;

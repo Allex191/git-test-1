@@ -11,21 +11,34 @@ const LOG_EVENT_MONSTER_ATTACK = "MONSTER_ATTACK";
 const LOG_EVENT_PLAYER_HEAL = "PLAYER_HEAL";
 const LOG_EVENT_GAME_OVER = "GAME_OVER";
 
-const enteredValue = prompt("Maximum life for the monster 10-500", "100");
-
-let chosenMaxLife = parseInt(enteredValue);
-if (isNaN(chosenMaxLife) || chosenMaxLife <= 10 || chosenMaxLife > 500) {
-  chosenMaxLife = 100;
+function getMaxLifeValues() {
+  const enteredValue = prompt("Maximum life for the monster 10-500", "100");
+  const parsedValue = parseInt(enteredValue);
+  if (isNaN(parsedValue) || parsedValue <= 10) {
+    throw { message: "Invalid user input" };
+  }
+  return parsedValue;
 }
+
+let chosenMaxLife;
+
+try {
+  chosenMaxLife = getMaxLifeValues();
+} catch (error) {
+  console.log(error);
+  chosenMaxLife = 100;
+  alert("you entered a something wrong, defaul value of 100 was used");
+}
+
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
 let battleLog = [];
+let logEntry;
 
 adjustHealthBars(chosenMaxLife);
 
 function writeToLog(ev, val, monsterHealth, playerHealth) {
-  let logEntry;
   switch (ev) {
     case LOG_EVENT_PLAYER_ATTACK:
       logEntry = {
@@ -171,7 +184,19 @@ function healPlayerhandler() {
 }
 
 function printLogHandler() {
-  console.log(battleLog);
+  for (let i = 0; i < battleLog.length; i++) {
+    console.log(battleLog[i]);
+  }
+}
+function printLogHandler() {
+  let n = 0;
+  for (const i of battleLog) {
+    console.log("%c%s", "color: #d90000", `#${n}`);
+    n++;
+    for (const j in logEntry) {
+      console.log("%c%s", "color: #ffa640", ` ${j} => ${logEntry[j]}`);
+    }
+  }
 }
 
 attackBtn.addEventListener("click", attackHandler);

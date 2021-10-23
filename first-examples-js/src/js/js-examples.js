@@ -1804,6 +1804,183 @@ alert(combinedString);
 let test= [2,5,6];
 console.log(test[0]);
 
+var count = 0;
+
+function cc(card) {
+  switch (card) {
+    case 10:
+    case "J":
+    case "Q":
+    case "K":
+    case "A":
+      count--;
+      break;
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+      count++;
+  }
+
+  if (count > 0) {
+    return count + " Bet";
+  } else {
+    return count + " Hold";
+  }
+}
+cc(2);
+cc(3);
+cc(7);
+cc("K");
+cc("A");
+
+let goods = {
+  house: 1,
+  "user cars": 2,
+};
+goods.house; // --can acces with dots only if not space
+
+goods["user cars"]; //--can acces all
+
+multiply(arr, n) == multiply(arr, n - 1) * arr[n - 1]. 
+
+ function sum(arr, firstNmbrs) {
+  let count = 0;
+  for (let i = 0; i < firstNmbrs; i++) {
+    count += arr[i];
+  }
+  return count;
+} 
+
+console.log(sum(arr, 5));
+
+
+debugger
+
+function test(nr) {
+  if (nr === 0) {
+    return;
+  } else {
+    console.log(nr);
+    test(nr - 1);
+  }
+}
+
+test(5);
+
+
+
+let arr = [2, 2, 2, 2, 2];
+sum(arr, 3);
+
+function sum(arr, firstNmbrs) {
+  // Only change code below this line
+  if (firstNmbrs <= 0) {
+    return 0;
+  } else {
+    return sum(arr, firstNmbrs - 1) + arr[firstNmbrs - 1];
+  }
+}
+
+
+let arr1 = [];
+let arr2 = [];
+for (let i = 0; i < 100; i++) {
+  const randomMumber = Math.random();
+  if (randomMumber < 0.7) {
+    arr1.push(` ${i} = ${randomMumber}\n`);
+  } else {
+    arr2.push(` ${i} = ${randomMumber}\n`);
+  }
+}
+console.log("%c%s", "color: #f200e2", `Smaller than =>${arr1}`);
+console.log("%c%s", "color: #f200e2", `Bigger than =>${arr2}`);
+
+ let stop = true;
+while (stop) {
+  const randomMumber = Math.random();
+  if (randomMumber < 0.7) {
+    console.log("%c%s", "color: #f200e2", `Smaller than =>${randomMumber}`);
+  } else {
+    console.log("%c%s", "color: #f200e2", `Bigger than =>${randomMumber}`);
+    stop = false;
+  }
+} 
+
+//loop care striga la fiecare numar care e mai mare decit 0.7
+//si striga cind e mai mic de 0.7
+
+ if (randomMumber > 0.7) {
+  alert(`greater than ${randomMumber}`);
+} else {
+  console.log(`smaller than ${randomMumber}`);
+}
+
+
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+
+for (let i = 0; i < arr.length; i++) {
+  console.log("%c%s", "color: #807160", arr[i]);
+}
+
+ for (let j = arr.length; j > 0; j--) {
+  console.log("%c%s", "color: #807160", arr[j - 1]);
+}
+
+let randomNumber1;
+let randomNumber2;
+
+function changeNumbers() {
+  randomNumber1 = Math.random();
+  randomNumber2 = Math.random();
+}
+changeNumbers();
+let stop = true;
+
+while (stop) {
+  if (randomNumber1 > 0.2 || randomNumber2 > 0.2) {
+    console.log("%c%s", "color: #731d6d", randomNumber1);
+    console.log("%c%s", "color: #731d6d", randomNumber2);
+    stop = false;
+  } else {
+    console.log("%c%s", "color: #006dcc", randomNumber1);
+    console.log("%c%s", "color: #006dcc", randomNumber2);
+    changeNumbers();
+  }
+}
+
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let reverse = [];
+
+for (const bot of arr) {
+  reverse.unshift(bot);
+}
+
+let condition = true;
+
+while (condition) {
+  if (arr[0] == undefined) {
+    condition = false;
+  } else {
+    arr.shift(0);
+  }
+}
+for (const bot of reverse) {
+  arr.push(bot);
+}
+
+console.log("%c%s", "color: #cc0088", arr);
+console.log("%c%s", "color: #cc0088", reverse);
+outerLoop: for (let i = 0; i < 10; i++) {
+  console.log("%c%s", "color: #77258c", "outer", i);
+  for (let j = 0; j < 10; j++) {
+    console.log("%c%s", "color: #ff258c", "inner", j);
+    if (j === 8) {
+      break outerLoop;
+    }
+  }
+}
+
 */
-
-
