@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(255, 255, 255);
+  background-color: gray;
 }
 
 #mocha {
@@ -12,5 +12,4 @@ body {
   min-height: 50px;
   max-width: 300px;
   margin-left: 50px !important;
-}
-/*# sourceMappingURL=mocha.css.map */
+}/*# sourceMappingURL=mocha.css.map */

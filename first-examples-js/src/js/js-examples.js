@@ -1983,4 +1983,47 @@ outerLoop: for (let i = 0; i < 10; i++) {
   }
 }
 
+const findGreaterOrEqual = (a, b) => {
+  return a === b
+    ? "a and b are equal"
+    : a > b
+    ? "a is greater"
+    : "b is greater";
+};
+
+function findGreaterOrEqual(a, b) {
+  if (a === b) {
+    return "a and b are equal";
+  } else if (a > b) {
+    return "a is greater";
+  } else {
+    return "b is greater";
+  }
+}
+
+findGreaterOrEqual(2, 3);
+console.log("%c%s %s", "color: #eeff00", findGreaterOrEqual(2, 2));
+let count1 = ``;
+let count2 = ``;
+function test(cart, ...param) {
+  //rest operator should be last argument ...param is created as an array 
+  for (const bot of param) {
+    count1 += " one " + bot;
+  }
+  count2 = `Your ${cart} have${count1}`;
+
+  console.log("%c%s", "color: #d0bfff", count2);
+}
+test("cart", "banana", "orange", "tomatoes"); 
+
+const unlimited = function (callback, ...arg) {
+  if (!arg) {
+    callback();
+  }
+};
+const callback = () => console.log("%c%s", "color: #40fff2", "Emty string");
+
+unlimited(callback, "A", "beauty", "string") ;
+
+
 */

@@ -1,0 +1,149 @@
+body {
+  overflow-x: hidden;
+  background: linear-gradient(
+    180deg,
+    #4682f1 0%,
+    #5992fd 25%,
+    #4685fc 50%,
+    #236ffc 75%,
+    #004384 100%
+  );
+  height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.header {
+  height: 70px;
+  margin-bottom: 15vh;
+}
+
+.header__text {
+  padding-top: 10px;
+  font: var(--title-semibold-pre-medium);
+  color: #d4dfad;
+  text-align: end;
+}
+.main {
+  margin: auto 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.calculator {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+  height: 396px;
+  width: 300px;
+  border: 2px solid rgb(45, 15, 54);
+  border-right: 0;
+  border-bottom: 0;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+    rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px,
+    rgba(240, 46, 170, 0.05) 25px 25px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/backdrop-purple.jpg);
+  }
+  &__input {
+      font: var(--title-semibold-pre-medium);
+    position: relative;
+    text-align: end;
+    padding: 2px;
+    margin: 20px auto 10px;
+    width: 233px;
+    height: 44px;
+    -moz-appearance: textfield;
+  }
+  &__input::-webkit-outer-spin-button,
+  &__input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &__buttons {
+    display: grid;
+    grid-gap: 10px 9px;
+    grid-template-columns: repeat(4, 65px);
+    grid-template-rows: repeat(6, 42px);
+    margin: auto 0 10px;
+  }
+  &__button {
+    text-align: center;
+    font: var(--text-bold-large);
+    margin: 0;
+    align-items: center;
+    appearance: none;
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+      rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+      rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-decoration: none;
+    transition: box-shadow 0.15s, transform 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    font-size: 18px;
+    &:focus {
+      box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+        rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+    }
+
+    &:hover {
+      box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+        rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      box-shadow: #3c4fe0 0 3px 7px inset;
+      transform: translateY(2px);
+    }
+  }
+
+  &__button--power {
+    margin-left: -8px;
+    font: var(--text-bold-pre-large);
+    grid-column-start: 4;
+    grid-column-end: 4;
+    background-color: rgb(248, 170, 170);
+  }
+  &__button--equal {
+    background-color: rgb(217, 250, 175);
+  }
+  &__button--number {
+    background-color: rgb(175, 235, 250);
+  }
+  &__button--operation {
+    background-color: rgb(191, 164, 221);
+  }
+  &__button--history {
+    font: var(--text-bold-pre-large);
+    background-color: rgb(211, 181, 83);
+  }
+}
