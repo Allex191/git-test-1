@@ -2026,4 +2026,158 @@ const callback = () => console.log("%c%s", "color: #40fff2", "Emty string");
 unlimited(callback, "A", "beauty", "string") ;
 
 
+
+function checkInput(cb, ...many) {
+  let hasEmptyText = false;
+  for (const text of many) {
+    if (!text) {
+      hasEmptyText = true;
+      break;
+    }
+  }
+  if (!hasEmptyText) {
+    cb();
+  }
+}
+
+debugger;
+
+checkInput(
+  () => {
+    console.log("All not empty");
+  },
+  "Hello",
+  "12",
+  "d"
+);
+
+
+
+const sumUp = (resultHandler, ...numbers) => {
+  const validateNumber = (number) => {
+    return isNaN(number) ? 0 : number;
+  };
+
+  let sum = 0;
+  for (const num of numbers) {
+    sum += validateNumber(num);
+  }
+  resultHandler(sum);
+};
+
+const subtractUp = function (resultHandler, ...numbers) {
+  let sum = 0;
+  for (const num of numbers) {
+    sum -= num;
+  }
+  resultHandler(sum);
+};
+
+const showResult = (result) => {
+  alert("The result after adding all numbers is: " + result);
+};
+
+sumUp(showResult, 1, 5, "fdsa", -3, 6, 10);
+sumUp(showResult, 1, 5, 10, -3, 6, 10, 25, 88);
+console.log(subtractUp(1, 10, 15, 20));
+
+
+function reverseCase(str) {
+	let word =[]
+	for(const i of str){
+		if(i === i.toUpperCase()){
+			word.push(i.toLowerCase())
+		}else{
+			word.push(i.toUpperCase())
+		}	
+	}
+	console.log(word.join(""))
+}
+
+reverseCase("sPoNtAnEoUs")
+	
+
+const twoSum = function (nums, target) {
+  for (let i = 1; i <= nums.length; i++) {
+    for (let j = 1; j <= nums.length; j++) {
+      if (nums[i] != nums[j] && i + j === target) {
+        console.log(i, j);
+      }
+    }
+  }
+};
+
+const arr = [1, 2, 3, 4];
+
+twoSum(arr, 7);
+
+
+export const convert = (number) => {
+  let container = "";
+  if (number % 3 === 0) {
+    container += "Pling";
+  }
+  if (number % 5 === 0) {
+    container += "Plang";
+  }
+  if (number % 7 === 0) {
+    container += "Plong";
+  }
+  if (!container) {
+    container = number.toString();
+  }
+  return container;
+};
+debugger;
+console.log("%c%s", "color: #006dcc", convert(1));
+
+
+const minMax = (arr) => {
+  arr.sort();
+  console.log( [arr[0], arr[arr.length - 1]]);
+};
+
+
+const arr1 = [0, 1, 2, 3, 4, 5];
+
+function local() {
+  const part1 = arr1.slice(0, 3);
+  console.log("%c%s", "color: #997326", part1);
+}
+
+
+function list(arr1) {
+  if (arr1.length === 0) {
+    return "";
+  }
+  if (arr1.length === 1) {
+    return arr1[0];
+  }
+  let elExLast = arr1.slice(0, arr1.length - 1);
+  let lastElement = arr1.slice(arr1.length - 1, arr1.length);
+  return elExLast.join(", ") + " and " + lastElement;
+}
+
+list(["Huey", "Dewey", "Louie"]);
+
+//Huey, Dewey and Louie
+
+function gcd(x, y) {
+  if (typeof x !== "number" || typeof y !== "number") return false;
+  x = Math.abs(x);
+  y = Math.abs(y);
+  while (y) {
+    var t = y;
+    y = x % y;
+    x = t;
+  }
+  console.log(x);
+  return x;
+}
+debugger
+gcd(15, 6);
+
+15,6
+
+
 */

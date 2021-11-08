@@ -1,4 +1,4 @@
-/* const startGameBtn = document.getElementById("start-game-btn");
+const startGameBtn = document.getElementById("start-game-btn");
 const ROCK = "ROCK";
 const PAPER = "PAPER";
 const SCISSORS = "SCISSORS";
@@ -58,4 +58,4 @@ startGameBtn.addEventListener("click", () => {
   alert(message);
   gameIsRunning = false;
 });
- */
+ 

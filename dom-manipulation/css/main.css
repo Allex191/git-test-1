@@ -124,9 +124,17 @@ input, select {
 }
 
 body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: relative;
   overflow-x: hidden;
   background: linear-gradient(180deg, #4682f1 0%, #5992fd 25%, #4685fc 50%, #236ffc 75%, #004384 100%);
   height: 100vh;
+  width: 100vw;
+}
+
+ul, ol {
+  padding-left: 20px;
 }
 
 .container {
@@ -135,27 +143,36 @@ body {
   padding: 0 10px;
 }
 
-.header {
-  height: 70px;
-  margin-bottom: 15vh;
+.invisible {
+  opacity: 0;
 }
 
-.header__text {
-  padding-top: 10px;
-  font: var(--title-semibold-pre-medium);
-  color: #d4dfad;
-  text-align: end;
+.paragraphs-color {
+  color: red;
+}
+
+.test__list {
+  background-color: #e07d7d;
+}
+.test__input {
+  background-color: #fab2b2;
+}
+
+.newH-title {
+  color: purple;
+  font-size: 30px;
 }
 
 .main {
-  margin: auto 0;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  justify-self: start;
+  position: relative;
+  display: inline-block;
+  padding: 10px 0 0 30px;
+  border: 2px solid #ec8ce0;
+  width: 50vw;
 }
 
 .calculator {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -259,4 +276,9 @@ body {
 .calculator__button--history {
   font: var(--text-bold-pre-large);
   background-color: #d3b553;
+}
+
+.footer {
+  position: relative;
+  display: inline-block;
 }/*# sourceMappingURL=main.css.map */

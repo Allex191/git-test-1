@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,28 +11,44 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="js/app.js" defer></script>
 </head>
-
 <body>
     <header class="header">
         <div class="container">
-            <h1 class="header__text">My first calculator</h1>
-        </div>
-        <div class="test">
-            <div class="container">
+            <h1 class="header__text"></h1>
+            <div class="test">
                 <h2 id="main-title">Main title</h2>
                 <ul>
+                    <li>Item 0</li>
                     <li>Item 1</li>
                     <li class="list-item">Item 2</li>
                     <li class="list-item">Item 3</li>
                 </ul>
-                <p class="test-text">First text</p>
-                <p class="test-text">Second text</p>
+                <p class="test__text-first">First text</p>
+                <p class="test__text-second">opacity</p>
+                <p class="test__text-third">third</p>
+                <p class="test__text-fourth">fourth</p>
+                <p class="test__text-fifth">fifth</p>
+                <div class="newList">
+
+                </div>
+                <input class="test__input" type="text" value="some text">
+                <button>Add/remove list</button>
+                <div class="added-content">
+                    <button class="insertAdjacentHtml">insertAdjacentHtml</button>
+                    <h2 class="added-content__title">A simple text</h2>
+                    <button class="createElement">createElement</button>
+                </div>
             </div>
         </div>
     </header>
     <main class="main">
         <div class="container">
-            <div class="calculator">
+            <ol class="personal-list">
+                <li class="personal-list__element--first">first list</li>
+                <li class="personal-list__element--second">second list</li>
+                <li class="personal-list__element--removed">deteled item</li>
+            </ol>
+            <!-- <div class="calculator">
                 <input class="calculator__input" type="number">
                 <div class="calculator__buttons">
                     <button class="calculator__button calculator__button--power">ON/OFF</button>
@@ -59,7 +74,7 @@
                     <button class="calculator__button">.</button>
                     <button class="calculator__button calculator__button--equal">=</button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </main>
     <footer class="footer">
