@@ -18,15 +18,15 @@ body {
 }
 
 .header {
+  padding-top: 10px;
   height: 70px;
   margin-bottom: 15vh;
 }
 
 .header__text {
-  padding-top: 10px;
   font: var(--title-semibold-pre-medium);
-  color: #d4dfad;
-  text-align: end;
+  color: #ffffff;
+  text-align: center;
 }
 .main {
   margin: auto 0;

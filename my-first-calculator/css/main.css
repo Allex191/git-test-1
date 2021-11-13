@@ -136,15 +136,15 @@ body {
 }
 
 .header {
+  padding-top: 10px;
   height: 70px;
   margin-bottom: 15vh;
 }
 
 .header__text {
-  padding-top: 10px;
   font: var(--title-semibold-pre-medium);
-  color: #d4dfad;
-  text-align: end;
+  color: #ffffff;
+  text-align: center;
 }
 
 .main {
@@ -259,4 +259,21 @@ body {
 .calculator__button--history {
   font: var(--text-bold-pre-large);
   background-color: #d3b553;
+}
+
+@media screen and (max-height: 600px) {
+  .header {
+    margin-bottom: 0;
+    padding-top: 0;
+    height: initial;
+  }
+}
+@media screen and (max-height: 465px) {
+  .header {
+    display: none;
+  }
+
+  .calculator {
+    margin-top: 10px;
+  }
 }/*# sourceMappingURL=main.css.map */
