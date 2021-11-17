@@ -63,15 +63,30 @@ body {
     background-image: url(../images/backdrop-purple.jpg);
   }
   &__input {
-    font: var(--title-semibold-pre-medium);
     position: relative;
     text-align: end;
     padding: 2px;
-    margin: 20px auto 10px;
     width: 233px;
     height: 44px;
     -moz-appearance: textfield;
+
+    &:focus {
+      outline: none;
+    }
+
+    &--inferior {
+      background-color: white;
+      border-color: #757474;
+      margin: 10px auto 0;
+      border-bottom: none;
+    }
+    &--main {
+      font: var(--title-semibold-pre-medium);
+      margin-bottom: 10px;
+      border-top: none;
+    }
   }
+
   &__input::-webkit-outer-spin-button,
   &__input::-webkit-inner-spin-button {
     -webkit-appearance: none;

@@ -180,14 +180,26 @@ body {
   background-image: url(../images/backdrop-purple.jpg);
 }
 .calculator__input {
-  font: var(--title-semibold-pre-medium);
   position: relative;
   text-align: end;
   padding: 2px;
-  margin: 20px auto 10px;
   width: 233px;
   height: 44px;
   -moz-appearance: textfield;
+}
+.calculator__input:focus {
+  outline: none;
+}
+.calculator__input--inferior {
+  background-color: white;
+  border-color: #757474;
+  margin: 10px auto 0;
+  border-bottom: none;
+}
+.calculator__input--main {
+  font: var(--title-semibold-pre-medium);
+  margin-bottom: 10px;
+  border-top: none;
 }
 .calculator__input::-webkit-outer-spin-button, .calculator__input::-webkit-inner-spin-button {
   -webkit-appearance: none;
