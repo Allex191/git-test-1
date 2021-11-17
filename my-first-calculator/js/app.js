@@ -6,13 +6,11 @@ const operationsButtons = document.querySelectorAll(
 );
 const equalButton = document.querySelector(".calculator__button--equal");
 
-const operationsLogic = {
-  "+": (x, y) => x + y,
-  "-": (x, y) => x - y,
-  "÷": (x, y) => x / y,
-  x: (x, y) => x * y,
-};
-/*  */
+
+
+
+
+
 //0-9 eventListener
 for (const number of numbersButtons) {
   number.addEventListener(
@@ -34,6 +32,12 @@ equalButton.addEventListener(
   createResult.bind(this, equalButton.textContent)
 );
 
+
+
+
+
+
+
 // apas cifra 2 si se pune in input  2
 // apas plus si se pune din input in memory
 // apas cifra si se pune in input
@@ -48,6 +52,19 @@ equalButton.addEventListener(
   //2*
   //2*5+
 
+  
+
+
+  
+
+
+
+// const operationsLogic = {
+//   "+": (x, y) => x + y,
+//   "-": (x, y) => x - y,
+//   "÷": (x, y) => x / y,
+//   x: (x, y) => x * y,
+// };
   
 // let inferiorInputStorage = [];
 // let inputNumbers = "";
