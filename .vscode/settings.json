@@ -9,5 +9,10 @@
             "savePathSegmentKeys": null,
             "savePathReplaceSegmentsWith": null
         }
+        // {
+        //     "extensionName": ".min.css",
+        //     "format": "compressed",
+        //     "savePath": "~/../css/"
+        // }
     ]
 }
