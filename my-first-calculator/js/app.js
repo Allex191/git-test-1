@@ -1,15 +1,66 @@
-const numbersButtons = document.querySelectorAll(".calculator__button--number");
+/* const numbersButtons = document.querySelectorAll(".calculator__button--number");
 const mainInput = document.querySelector(".calculator__input--main");
 const inferiorInput = document.querySelector(".calculator__input--inferior");
 const operationsButtons = document.querySelectorAll(
   ".calculator__button--operation"
 );
 const equalButton = document.querySelector(".calculator__button--equal");
+const operationsLogic = {
+  "+": (x, y) => x + y,
+  "-": (x, y) => x - y,
+  "÷": (x, y) => x / y,
+  x: (x, y) => x * y,
+};
 
+let inputNumber;
+let memoryStock = null;
+let currentOperation;
+let inferiorInputStorage = [];
+let resultTemp = null;
+let resultPerm = null;
+let historyTemp = null;
+let historyArr = [];
 
+const updateInferiorInput = () => {
+  inferiorInput.value = inferiorInputStorage.join("");
+};
 
+const createResult = () => {
+  resultTemp = operationsLogic[currentOperation](memoryStock, inputNumber);
+  mainInput.value = resultTemp;
+};
 
+const setEqualSign = (equal) => {
+  inferiorInputStorage.push(inputNumber);
+  inferiorInputStorage.push(equal);
+  createResult();
+  inferiorInputStorage.push(resultTemp);
+  updateInferiorInput();
+};
 
+const addUserNumber = (number) => {
+  inputNumber = +number;
+  mainInput.value = inputNumber;
+};
+
+const setMathOperation = (operation) => {
+  if (resultTemp != null) {
+    inferiorInputStorage.push(resultTemp);
+    historyTemp = inferiorInputStorage.splice(0, 4);
+    historyArr.push(historyTemp);
+    updateInferiorInput();
+    resultTemp = null;
+  }
+  if (memoryStock != null) {
+    createResult();
+    memoryStock = null;
+  }
+  memoryStock = inputNumber;
+  currentOperation = operation;
+  inferiorInputStorage.push(memoryStock);
+  inferiorInputStorage.push(currentOperation);
+  updateInferiorInput();
+};
 
 //0-9 eventListener
 for (const number of numbersButtons) {
@@ -29,14 +80,8 @@ for (const operation of operationsButtons) {
 
 equalButton.addEventListener(
   "click",
-  createResult.bind(this, equalButton.textContent)
-);
-
-
-
-
-
-
+  setEqualSign.bind(this, equalButton.textContent)
+); */
 
 // apas cifra 2 si se pune in input  2
 // apas plus si se pune din input in memory
@@ -45,19 +90,12 @@ equalButton.addEventListener(
 // daca apas egal in input arata rezultatul 5 dar in inferior arata 2+3=
 // dupa cind apas plus in inferior arata rezultatul  5+
 
-  //1.read userNumber
-  //2.if currentOperation is null memoryStock = userNumber
-  //3.if currentOperation not empty
-  //1+1*
-  //2*
-  //2*5+
-
-  
-
-
-  
-
-
+//1.read userNumber
+//2.if currentOperation is null memoryStock = userNumber
+//3.if currentOperation not empty
+//1+1*
+//2*
+//2*5+
 
 // const operationsLogic = {
 //   "+": (x, y) => x + y,
@@ -65,7 +103,7 @@ equalButton.addEventListener(
 //   "÷": (x, y) => x / y,
 //   x: (x, y) => x * y,
 // };
-  
+
 // let inferiorInputStorage = [];
 // let inputNumbers = "";
 // let memoryStock1 = null;
@@ -112,3 +150,21 @@ equalButton.addEventListener(
 
 //   inputNumbers = "";
 // };
+
+// function normalize(str) {
+//   debugger;
+//   let firstOc = str.indexOf("-");
+//   let secondOc = str.indexOf("-", firstOc + 1);
+//   str = str.replace("-", "/");
+//   str.replace(secondOc, "/");
+//   return str;
+// }
+
+// normalize("20-05-2017");
+
+function median(arr) {
+  
+}
+
+let arr = [1, 2, 10, 100];
+console.log(flat(arr));

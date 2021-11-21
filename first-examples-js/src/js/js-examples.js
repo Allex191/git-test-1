@@ -2180,4 +2180,28 @@ gcd(15, 6);
 15,6
 
 
+
+function addWithSurcharge(nr1, nr2) {
+  let surcharge = 0;
+
+  if (nr1 <= 10) {
+    surcharge++;
+  } else if (nr1 <= 20) {
+    surcharge += 2;
+  } else {
+    surcharge += 3;
+  }
+
+  if (nr2 <= 10) {
+    surcharge++;
+  } else if (nr2 <= 20) {
+    surcharge += 2;
+  } else {
+    surcharge += 3;
+  }
+  return nr1 + nr2 + surcharge;
+}
+addWithSurcharge(10, 10);
 */
+
+
