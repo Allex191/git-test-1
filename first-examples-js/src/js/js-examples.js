@@ -1,4 +1,177 @@
-/*"use strict";
+/*"
+
+//binary tree
+var search = function (nums, target) {
+  let start = 0;
+  let middle;
+  let end = nums.length;
+  let tof = false;
+  let position = -1;
+  let iterations = 0;
+
+  while (tof === false && start <= end) {
+    iterations++;
+    middle = Math.floor((start + end) / 2);
+    if (nums[middle] === target) {
+      tof = true;
+      position = middle;
+      console.log(iterations);
+      return position;
+    }
+    if (target < nums[middle]) {
+      end = middle - 1;
+    } else {
+      start = middle + 1;
+    }
+  }
+  console.log(iterations);
+  return position;
+};
+
+//iterations count
+let nums = [];
+let maxIteration = 9999;
+for (let i = 0; i <= maxIteration; i++) {
+  nums.push(i);
+}
+let target = 6900;
+
+console.log(search(nums, target));
+
+
+var twoSum = function (nums, target) {
+  const values = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    const targetSubtract = target - nums[i];
+    const matchingValue = values.get(targetSubtract);
+    if (matchingValue !== undefined) {
+      return [matchingValue, i];
+    }
+    values.set(nums[i], i);
+  }
+};
+
+console.log(twoSum([5, 5, 6, 3], 9));
+
+
+
+let twoSum = function (arrNums, target) {
+  let arrPositions = [];
+  for (let i = 0; i < arrNums.length; i++) {
+    // 3,2,4
+    for (let j = 0; j < arrNums.length; j++) {
+      //   2,4
+      if (j !== i) {
+        if (+arrNums[i] + +arrNums[j] === target) {
+          arrPositions.push(i, j);
+          return arrPositions;
+        }
+      }
+    }
+  }
+};
+function setValue(symbol) {
+  let value;
+  switch (symbol) {
+    case "I":
+      value = 1;
+      break;
+    case "V":
+      value = 5;
+      break;
+    case "X":
+      value = 10;
+      break;
+    case "L":
+      value = 50;
+      break;
+    case "C":
+      value = 100;
+      break;
+    case "D":
+      value = 500;
+      break;
+    case "M":
+      value = 1000;
+      break;
+  }
+  return value;
+}
+
+function arabic(str) {
+  let sum = 0;
+  let precedent = 0;
+  let current = 0;
+
+  for (const symbol of str) {
+    current = setValue(symbol);
+
+    if (current > precedent) {
+      sum = sum - 2 * precedent;
+    }
+    sum += current;
+    precedent = current;
+  }
+
+  return sum;
+}
+console.log(arabic("CCXLVI")); // CCXLVI 100/100/10/50/5/1 = 246
+console.log(arabic("CDLXXXIII")); //100/500/50/10/10/10/111  =483
+
+//not mine
+//
+//
+// function arabic(roman) {//CCXLVI 100/100/10/50/5/1 = 246
+//   // debugger
+//   if (roman == null) return -1;
+//   var totalValue = 0,
+//     value = 0, // Initialise!
+//     prev = 0;
+
+//   for (var i = 0; i < roman.length; i++) {
+//     var current = char_to_int(roman.charAt(i));//give position index and receive arabic value
+//     if (current > prev) { //1st if 100>0
+//       // Undo the addition that was done, turn it into subtraction
+
+//       totalValue = totalValue - 2 * value;
+//     }
+//     if (current !== prev) {
+//       // Different symbol?
+//       value = 0; // reset the sum for the new symbol
+//     }
+//     value += current; // keep adding same symbols
+//     totalValue += current;
+//     prev = current;
+//   }
+//   return totalValue;
+// }
+
+// function char_to_int(character) {
+//   switch (character) {
+//     case "I":
+//       return 1;
+//     case "V":
+//       return 5;
+//     case "X":
+//       return 10;
+//     case "L":
+//       return 50;
+//     case "C":
+//       return 100;
+//     case "D":
+//       return 500;
+//     case "M":
+//       return 1000;
+//     default:
+//       return -1;
+//   }
+// }
+
+// console.log(arabic("CXLVI")); // CCXLVI 100/100/10/50/5/1 = 146
+// console.log(arabic("CDLXXXIII")); //100/500/50/10/10/10/111  =483
+
+use strict";
 function varTypes() {
   var bot1 = 2;
   var bot2 = 3;
@@ -372,6 +545,10 @@ while(true){
         alert("its an odd number")
     };
 }
+
+wfpawlf
+
+
  
 for (let i = 0; i <= 10; i++) {
     if (i % 2 == 1) continue;
@@ -2202,6 +2379,41 @@ function addWithSurcharge(nr1, nr2) {
   return nr1 + nr2 + surcharge;
 }
 addWithSurcharge(10, 10);
+
+function median(arr) {
+  if (arr.length % 2 != 0) {
+    let position;
+    position = Math.floor(arr.length / 2);
+    return arr[position];
+  } else {
+    let nrAfterHalf = arr.length / 2;
+    let nrBeforeHalf = arr.length / 2 - 1;
+    let sum = (arr[nrAfterHalf] + arr[nrBeforeHalf]) / 2;
+    return sum;
+  }
+}
+
+let arr1 = [1, 2, 10];
+let arr2 = [1, 2, 10, 100];
+let arr3 = [1, 2, 10, 100, 500, 800];
+console.log(median(arr3));
+
+function hello(par) {
+  if (par) {
+    return `Hello ${par}!`;
+  }
+  return "Hello world!";
+}
+
+
+function cutComment(line) {
+  debugger;
+  let commentPosition = line.indexOf("//");
+  if (commentPosition !== -1) {
+    return line.slice(commentPosition + 3);
+  }
+  return null;
+}
+
+console.log(cutComment("let foo; // bar"));
 */
-
-
