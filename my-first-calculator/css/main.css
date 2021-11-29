@@ -257,7 +257,14 @@ body {
   background-color: #f8aaaa;
 }
 .calculator__button--eraser {
-  background-color: #b63c33;
+  background-color: #ce3328;
+}
+.calculator__button--eraser-img {
+  width: 110%;
+  height: 80%;
+}
+.calculator__button--eraser-single {
+  background-color: #c75a28;
 }
 .calculator__button--equal {
   background-color: #d9faaf;
