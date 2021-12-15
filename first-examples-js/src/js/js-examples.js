@@ -1,4 +1,696 @@
-/*"
+/*
+
+const person = {
+  firstName: "Brad",
+  secondName: "Pit",
+  get fullName() {
+    return `${this.firstName} ${this.secondName}`; //read only
+  },
+  set fullName(val) {
+    //write only
+    const parts = val.split(" ");
+    this.firstName = parts[0];
+    this.lastName = parts[1];
+  },
+};
+
+console.log(person.fullName);
+person.fullName = "mosh djabi";
+console.log(person.fullName);
+
+
+var singleNumber = function (nums) {
+  let hash1 = new Map();
+  let hash2 = new Map();
+
+  for (const number of nums) {
+    if (hash1.has(number)) {
+      hash2.set(number);
+      hash1.delete(number);
+    } else {
+      hash1.set(number);
+    }
+  }
+
+  // hash2.forEach((value, key) => hash1.delete(key));
+
+  const iterator1 = hash2[Symbol.iterator]();
+  for (const number of iterator1) {
+    hash1.delete(number[0]);
+  }
+  return [...hash1][0][0];
+};
+
+var singleNumber0 = function (nums) {
+  for (let i = 0; i < nums.length; i++) {
+    const element = nums[i];
+    if (nums.indexOf(element) === nums.lastIndexOf(element)) {
+      return element;
+    }
+  }
+};
+
+var singleNumber1 = function (nums) {
+  while (nums.length > 1) {
+    outer: for (let i = 0; i < nums.length; i++) {
+      const element1 = nums[i];
+      for (let j = i + 1; j < nums.length; j++) {
+        const element2 = nums[j];
+        if (element1 === element2) {
+          nums.splice(j, 1);
+          nums.splice(i, 1);
+          continue outer;
+        }
+      }
+    }
+  }
+  return nums[0];
+};
+//
+//
+//
+//hash map
+var singleNumber2 = function (nums) {
+  debugger;
+  let hash = new Map();
+  let length = nums.length;
+
+  for (let i = 0; i < length; i++) {
+    if (hash.has(nums[i])) {
+      hash.delete(nums[i]);
+    } else {
+      hash.set(nums[i], 1);
+    }
+  }
+  console.log(hash);
+  return [...hash][0][0];
+};
+//xor
+var singleNumber3 = function (nums) {
+  let bitsum = 0;
+  for (let i = 0; i < nums.length; i++) {
+    bitsum = bitsum ^ nums[i];
+  }
+  return bitsum;
+};
+
+//set
+const singleNumber = (array) => {
+  let setSum = 0;
+  let arraySum = 0;
+  const set = new Set(array);
+  for (const number of set) {
+    setSum += number;
+  }
+  for (const number of array) {
+    arraySum += number;
+  }
+  return setSum * 2 - arraySum;
+};
+
+let nums1 = [2, 4, 6, 2, 5, 4, 6];
+let nums2 = [4, 1, 2, 1, 2];
+let nums3 = [1];
+let nums4 = [2, 2, 4, 4, 5, 5, 6, 6, 7];
+
+console.log(singleNumber(nums1));
+console.log(singleNumber(nums2));
+console.log(singleNumber(nums3));
+console.log(singleNumber(nums4));
+
+//hasm map strings
+const singleString1 = (array) => {
+  let hash = new Map();
+
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (hash.has(element)) {
+      hash.delete(element);
+    } else {
+      hash.set(element);
+    }
+  }
+  return [...hash][0][0];
+};
+
+let array1 = ["a", "a", "b", "b", "c", "d", "d"];
+
+console.log(singleString1(array1));
+
+//set
+const singleString = (array) => {
+  const set = new Set(array);
+  outer: for (let i = 0; i < array.length; i++) {
+    const element1 = array[i];
+    for (let j = i + 1; j < array.length; j++) {
+      const element2 = array[j];
+      if (element1 === element2) {
+        continue outer;
+      }
+    }
+    set;
+  }
+};
+
+let array2 = ["a", "a", "b", "b", "c", "d", "d"];
+
+console.log(singleString(array1));
+
+
+const brandNewSet = new Set([1, 2, 4]);
+brandNewSet.add(2); //not added because its alrready in the set
+brandNewSet.add("2"); //added because its a string
+brandNewSet.delete("2"); //deleted the string
+console.log(brandNewSet.has(2)); //true
+console.log(brandNewSet.has("2")); //false
+for (const entry of brandNewSet.values()) {
+  console.log(entry); //single values 2,2,4
+}
+brandNewSet.clear();
+brandNewSet;
+
+const firstPerson = { name: "Bob" };
+const secondPerson = { name: "John" };
+
+const personData = new Map([[firstPerson, [{ date: "yesterday", price: 10 }]]]); //first person in map can be  a variable
+personData.get(firstPerson); //[{ date: "yesterday", price: 10 }]
+personData.set(secondPerson, [{ date: "today ", age: 11 }]);
+
+for (const array of personData) {
+  console.log(array);
+}
+for (const [key, value] of personData) {
+  //array destructuring
+  console.log(key); //{name: 'Bob'},{name: 'John'}
+  console.log(value); // [{date..}],[{date..}]
+}
+for (const key of personData.keys()) {
+  console.log(key);
+}
+for (const value of personData.values()) {
+  console.log(value);
+}
+
+const array = [2, 4, 6, 8];
+
+const returnedFiltered = array.filter((x) => x > 5);
+returnedFiltered;
+
+const obj = [];
+
+array.map((number) => obj.push({ num: number }));
+obj;
+
+const mappedValues = array.map((number) => ({ num: number }));
+mappedValues;
+
+const addedNumbersOfArray = array.reduce((x, y) => x * y);
+
+
+
+const findMax = (array) => {
+  const max = Math.max(...array);
+  const min = Math.min(...array);
+  return [min, max];
+};
+const [min, max] = findMax(array);
+
+const noDuplicates = new Set();
+
+
+let person = { name: "Max" };
+const persons = new WeakSet();
+persons.add(person);
+person = null;
+//with WeakSet { name: "Max" } compare to Set() will be garbage collected if no other reference
+
+let person2 = { name: "Max" };
+let newPersons = new WeakMap();
+newPersons.set(person2, "extra info");
+person2 = null;   //the same as WeakSet if no reference for { name: "Max" } garbage collection will kick in
+
+
+let array = ["A big wall", " mouse", " big cat"];
+let joinedArrayWithoutComma = array.join("");
+let joinedArrayWithPlus = array.join(" + ");
+//joinedArrayWithoutComma = A big wall mouse big cat
+//joinedArrayWithPlus =A big wall +  mouse +  big cat
+
+const prices = [1, 2, 3, 4, 5];
+Math.min(prices); // does not work, work only with numbers
+Math.min(...prices);
+const copiedByReference = prices; //true
+const branNewArray = [...prices]; //works because its extracting all numbers
+branNewArray === prices; //false
+
+//array destructuring
+const array66 = ["max", "bob", "paul", 5, 6, 7, 8];
+const [firstplayer, secondplayer, thirdplayer, ...remainedNumbers] = array66; //remainedNumbers is a rest operator here, meaning is an array
+console.log(firstplayer); // max
+console.log(secondplayer); // bob
+console.log(thirdplayer); // payl
+console.log(remainedNumbers); // [5,6,7,8]
+
+
+
+const array = ["a", "b", "c"];
+let returnedArrayLength = array.unshift("e"); // add an element in the front of the array
+
+const array2 = ["a", "b", "c"];
+let savedSpliced = array2.splice(0, 1, "e", "f"); // delete one item at position 0 and replace with
+let deleteExcept = array2.splice(1);
+let deleteLastElement = array2.splice(-1, 1); //delete last element
+
+const firstArr = [0, 1, 2, 3];
+
+const copiedByReference = firstArr;
+firstArr.push(4);
+console.log(firstArr === copiedByReference); // true copiedByReference is the same object its copied the link
+
+const secondArr = firstArr.slice();
+console.log(firstArr == secondArr); //false slice is making another object and not copy the link to the old
+
+const arr3 = ["a", "b", "c", "d", "e"];
+let lastElements = arr3.slice(-3, -1); // lastElements =  ["d", "e"]
+let allExceptFirstTwo = arr3.slice(2); //allExceptFirstTwo = ["c", "d", "e"]
+
+let arr4 = ["a", "b", "c"];
+const arr5 = ["d", "e"];
+
+let arr6 = arr4.concat(arr5);
+arr4 = arr4.concat(arr5);
+console.log(arr4 === arr6); //false
+
+const personData = [{ name: "john" }, { name: "peter" }];
+// indexOf({ name: "peter" }) will not work because its creating a new object when its calling
+
+const peter = personData.find((person) => {
+  return person.name === "peter";
+});
+console.log(peter); //==={ name: "peter" }
+peter.name = "Bruce";
+console.log(peter); // ==={ name: "peter" }
+
+const peterIndex = personData.findIndex((person) => {
+  //returns index
+  return person.name === "peter";
+});
+
+console.log(peterIndex);
+
+const beasts = ["ant", "bison", "camel", "duck", "bison"];
+
+console.log(beasts.indexOf("bison")); // returns 1 or -1 if not find
+
+console.log(beasts.includes("bison")); //true
+
+const beasts2 = ["ant", "bison", "camel", "duck", "bison"];
+const beastsArray = [];
+
+beasts2.forEach((beast, index, array) => {
+  const beastObj = { index: index, beast: beast + index };
+  beastsArray.push(beastObj);
+});
+
+console.log(beastsArray);
+
+const returnedMapArray = beasts2.map((beast, index, array) => {
+  const beastObj = { index: index, beast: beast + index };
+  return beastObj;
+});
+
+console.log(returnedMapArray);
+
+console.log(beastsArray === returnedMapArray);
+
+const array1 = ["bob", "john", "emanuel", "paul"];
+const newArray1 = array1.map((element) => element + " hey");
+console.log(newArray1);
+
+const array3 = [2, 4, 6, 8];
+const newArray3 = array3.map((number) => number * number);
+console.log(newArray3);
+
+const array34 = [5, 7, 3, 10, 8];
+
+array34.sort((a, b) => {
+  if (a < b) {
+    return -1;
+  } else if (a === b) {
+    return 0;
+  } else {
+    return 1;
+  }
+});
+//array34 = [3,5,7,8,10]
+
+const array41 = [2, 4, 6, 8, 9, 10];
+let filteredArray = array41.filter((number) => number >= 8);
+console.log(filteredArray);
+
+const array42 = [2, 4, 6, 8, 9, 10];
+
+let sum = 0;
+for (const number of array42) {
+  sum += number;
+}
+
+sum;
+
+const array43 = [2, 4, 6, 8];
+//reduce take the second argument "0" as a prev, and for each value its reducing till last and return
+const sum43 = array43.reduce((prev, current, index, array) => {
+  return prev + current;
+}, 0);
+sum;
+
+debugger;
+let names = ["Alice", "Bob", "Tiff", "Bruce", "Alice"];
+let countedNames = names.reduce(function (allNames, name) {
+  if (name in allNames) {
+    allNames[name]++;
+  } else {
+    allNames[name] = 1;
+  }
+  return allNames;
+}, {});
+
+let addBinatyManual = (A, B) => {
+  let sum = "";
+  let carry = 0;
+  let i = A.length - 1;
+  let j = B.length - 1;
+  while (i >= 0 || j >= 0) {
+    let a = A[i] ? A[i] : "0";
+    let b = B[j] ? B[j] : "0";
+    sum = String(a ^ b ^ carry) + sum;
+    if (a === b && a !== String(carry)) {
+      carry = Number(!carry);
+    }
+    i--;
+    j--;
+  }
+
+  if (carry) {
+    sum = String(carry) + sum;
+  }
+  return sum;
+};
+
+console.log(addBinatyManual("111", "1"));
+
+
+const array = ["a", "b", "c"];
+let returnedArrayLength = array.unshift("e"); // add an element in the front of the array
+
+const array2 = ["a", "b", "c"];
+let savedSpliced = array2.splice(0, 1, "e", "f"); // delete one item at position 0 and replace with
+let deleteExcept = array2.splice(1);
+let deleteLastElement = array2.splice(-1, 1); //delete last element 
+
+ 
+
+var plusOne = function (digits) {
+  let lastZeros = [];
+  let lastDigit = digits.length - 1;
+
+  while (digits[lastDigit] === 9 || digits.length != 0) {
+    if (digits[lastDigit] === 9) {
+      digits[lastDigit] = 0;
+      lastZeros.unshift(digits.pop());
+      lastDigit = digits.length - 1;
+      continue;
+    }
+    break;
+  }
+
+  if (digits[lastDigit] != 9) {
+    digits[lastDigit] += 1;
+  }
+  digits = digits.concat(lastZeros);
+
+  if (digits[0] == 0) {
+    digits.unshift(1);
+  }
+  return digits;
+};
+
+let input1 = [1, 2, 3]; //[1,2,4]
+let input2 = [1, 2, 9]; //[1,3,0]
+let input3 = [1, 9, 9]; //[2,0,0]
+let input4 = [9, 9, 9]; //[1,0,0,0]
+let input5 = [9, 9, 9]; //[1,0,0,0]
+let input6 = [2, 9, 9, 9]; //[3,0,0,0,0]
+let input7 = [0]; //[3,0,0,0,0]
+
+// console.log(plusOne(input1));
+// console.log(plusOne(input2));
+// console.log(plusOne(input3));
+// console.log(plusOne(input4));
+// console.log(plusOne(input5));
+console.log(plusOne(input6));
+// console.log(plusOne(input7));
+
+// var maxSubArray = function (nums) {
+//   debugger;
+//   for (let i = 1; i < nums.length; i++) {
+//     nums[i] = Math.max(nums[i], nums[i] + nums[i - 1]);
+//     console.log(nums[i]);
+//   }
+//   return Math.max(...nums);
+// };
+
+
+
+var lengthOfLastWord = function (s) {  //v1
+  s = s.trim();
+  let indexLastSpace = s.lastIndexOf(" ");
+  let lastWordSize = s.length - 1 - indexLastSpace;
+
+  return lastWordSize;
+};
+
+var lengthOfLastWord = function (s) { //v2
+  let count = 0;
+  s = s.trim();
+  for (let i = s.length - 1; i >= 0; i--) {
+    if (s[i] === " ") {
+      return count;
+    }
+    count++;
+  }
+  return s.length;
+};
+
+var lengthOfLastWord = function (s) { //v3
+  let count = 0;
+  for (let i = s.length - 1; i >= 0; i--) {
+    if (s[i] !== " ") {
+      count++;
+    } else if (count !== 0) {
+      return count;
+    }
+  }
+  return count;
+};
+
+let string1 = "ab abcde better";
+let string2 = "    day";
+let string3 = "a";
+let string4 = "   fly me   to   the moon  ";
+
+console.log(lengthOfLastWord(string1));
+console.log(lengthOfLastWord(string2));
+console.log(lengthOfLastWord(string3));
+console.log(lengthOfLastWord(string4));
+
+
+//linked list
+//  function ListNode(val, next) {
+//  this.val = (val===undefined ? 0 : val)
+//  this.next = (next===undefined ? null : next)
+
+var mergeTwoLists = function (node1, node2) {
+  if (node1 == null) {
+    return node2;
+  }
+  if (node2 == null) {
+    return node1;
+  }
+
+  if (node1 == null && node2 == null) {
+    return null;
+  }
+  let list1Head = node1;
+  let list2Head = node2;
+  let mergedHead = null;
+  let mergedContinousTail = null;
+
+  while (list1Head && list2Head) {
+    let nextNode = null;
+    if (list1Head.val < list2Head.val) {
+      nextNode = list1Head;
+      list1Head = list1Head.next;
+    } else {
+      nextNode = list2Head;
+      list2Head = list2Head.next;
+    }
+
+    if (mergedHead === null) {
+      mergedHead = nextNode;
+      mergedContinousTail = nextNode;
+      continue;
+    }
+    mergedContinousTail.next = nextNode;
+    mergedContinousTail = nextNode;
+  }
+
+  if (list1Head != null) {
+    mergedContinousTail.next = list1Head;
+  }
+  if (list2Head != null) {
+    mergedContinousTail.next = list2Head;
+  }
+
+  return mergedHead;
+};
+
+var mergeTwoLists = function (head1, head2) {
+  const sentinel = {
+    val: -1,
+    next: null,
+  };
+
+  let tail = sentinel;
+  while (head1 && head2) {
+    if (head1.val > head2.val) {
+      tail.next = head2;
+      head2 = head2.next;
+    } else {
+      tail.next = head1;
+      head1 = head1.next;
+    }
+
+    tail = tail.next;
+  }
+
+  tail.next = head1 || head2;
+
+  return sentinel.next;
+};
+
+
+const longestCommonPrefix = (str) => {
+  if (str.length === 1) {
+    //if one word
+    return str[0];
+  }
+  for (const word of str) {
+    //if any empty word
+    if (word === "") {
+      return "";
+    }
+  }
+
+  let firstWord = str[0];
+  for (let i = 1; i < str.length; i++) {
+    debugger
+    while (str[i].indexOf(firstWord) != 0) {
+      firstWord = firstWord.substring(0, firstWord.length - 1);
+    }
+  }
+  return firstWord;
+};
+
+var romanToInt = function (s) {
+  let sum = 0;
+  const romanValues = {
+    M: 1000,
+    D: 500,
+    C: 100,
+    L: 50,
+    X: 10,
+    V: 5,
+    I: 1,
+  };
+  for (let i = 0; i < s.length; i++) {
+    if (s.length === 1){
+      debugger
+      return romanValues[s[i]]
+    }
+      if (romanValues[s[i]] < romanValues[s[i + 1]]) {
+        sum -= romanValues[s[i]];
+      } else {
+        sum += romanValues[s[i]];
+      }
+  }
+  return sum;
+};
+
+var getRomanValues = (char, previousChar) => {
+  if (
+    previousChar ||
+    previousChar !== "I" ||
+    previousChar !== "X" ||
+    previousChar !== "C"
+  ) {
+    if (previousChar === "I" && char === "V") {
+      char = "IV";
+    } else if (previousChar === "I" && char === "X") {
+      char = "IX";
+    } else if (previousChar === "X" && char === "L") {
+      char = "XL";
+    } else if (previousChar === "X" && char === "C") {
+      char = "XC";
+    } else if (previousChar === "C" && char === "D") {
+      char = "CD";
+    } else if (previousChar === "C" && char === "M") {
+      char = "CM";
+    }
+    previousChar = char;
+  }
+
+  switch (char) {
+    case "I":
+      return 1;
+    case "IV":
+      return 3;
+    case "V":
+      return 5;
+    case "IX":
+      return 8;
+    case "X":
+      return 10;
+    case "XL":
+      return 30;
+    case "L":
+      return 50;
+    case "XC":
+      return 80;
+    case "C":
+      return 100;
+    case "CD":
+      return 300;
+    case "D":
+      return 500;
+    case "CM":
+      return 800;
+    case "M":
+      return 1000;
+  }
+};
+
+const romanToInt = function (s) {
+  debugger;
+  let sum = 0;
+  let previousChar = "";
+  for (let i = 0; i < s.length; i++) {
+    previousChar = s[i - 1];
+    sum += getRomanValues(s[i], previousChar);
+  }
+  return sum;
+};
+
 
 //binary tree
 var search = function (nums, target) {

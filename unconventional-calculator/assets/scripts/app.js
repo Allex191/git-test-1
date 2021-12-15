@@ -16,7 +16,7 @@ const showPageContent = (currentValue, currentOperation, enteredValue, sum) => {
 const calculateResult = (calculationType) => {
   let enteredValue = parseInt(inputNumber.value);
   if (isNaN(enteredValue)) {
-    alert("enter a valid value")
+    alert("enter a valid value");
     return;
   }
   let currentValue = sum;
