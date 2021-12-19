@@ -1,5 +1,185 @@
 /*
 
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+
+function calcTip(bill) {
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+}
+
+for (let i = 0; i < bills.length; i++) {
+  tips.push(calcTip(bills[i]));
+  totals.push(bills[i] + tips[i]);
+}
+
+function calcAverage(arr) {
+  let sum = 0;
+  for (const bill of arr) {
+    sum += bill;
+  }
+  return sum / arr.length;
+}
+
+console.log(calcAverage(bills));
+console.log(bills);
+console.log(tips);
+console.log(totals);
+
+const arr1 = [3, -2, -6, -1, "error", 9, 13, 17, 15, 14, 9, 5];
+const arr2 = ["error", "error", "error"];
+const arr3 = [0, 0, 0];
+const arr4 = [10, 10, 10];
+
+function calcAmplitude(arr) {
+  let minNumber = null;
+  let maxNumber = null;
+  for (const iterator of arr) {
+    if (typeof iterator === "number") {
+      if (minNumber === null) {
+        minNumber = iterator;
+        maxNumber = iterator;
+      } else if (iterator < minNumber) {
+        minNumber = iterator;
+      } else if (iterator > maxNumber) {
+        maxNumber = iterator;
+      } else {
+        continue;
+      }
+    }
+  }
+  if (minNumber !== null) {
+    return `The amplitude is ${
+      maxNumber - minNumber
+    } with minimal temperature of ${minNumber}deg and maximal temperature of ${maxNumber}deg`;
+  } else {
+    return "No available temperatures";
+  }
+}
+
+console.log(calcAmplitude(arr1));
+console.log(calcAmplitude(arr2));
+console.log(calcAmplitude(arr3));
+console.log(calcAmplitude(arr4));
+
+
+//constructor function
+const Person = function (firstName, birthYear) {
+  //instance properties
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+
+  //never do this
+  // this.calcAge = function () {
+  //   console.log(2037 - this.birthYear);
+  // };
+};
+//1.New {} is created
+//2. function is called, this = {}
+//3.{} linked to prototype
+//4.function automaticaly return {}
+
+const jonas = new Person("jonas", 1991);
+console.log(jonas);
+
+const admin = new Person("admin", 1991);
+console.log(admin);
+
+console.log(admin instanceof Person);
+
+//Prototypes
+
+console.log(Person.prototype);
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+jonas.calcAge();
+
+//checkin if Person prototype is prototype of jonas also
+console.log(Person.prototype.isPrototypeOf(jonas));
+
+console.log(jonas.__proto__ === Person.prototype);
+
+Person.prototype.species = "Homo Sapiens";
+
+console.log(jonas.hasOwnProperty("firstName"));
+//true because its direct property
+
+console.log(jonas.hasOwnProperty("species"));
+//false because its not direct property, it has access to the prototype method.
+
+//call on instance to see all prototype not direct methods
+console.log(jonas.__proto__);
+
+const arr = [2, 3, 4];
+console.log(arr.__proto__);
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(this.make, this.speed);
+};
+
+Car.prototype.brake = function () {
+  this.speed -= 5;
+  console.log(this.make, this.speed);
+};
+
+const bmw = new Car("BMW", 280);
+const mercedes = new Car("Mercedes", 280);
+const audi = new Car("Audi", 300);
+
+bmw.accelerate();
+bmw.accelerate();
+mercedes.brake();
+mercedes.brake();
+audi.accelerate();
+
+
+const Player = function (kills, place) {
+  this.kills = kills;
+  this.place = place;
+};
+
+Player.prototype.calculatePoints = function () {
+  let pointsPerPlace = 0;
+  switch (this.place) {
+    case 1:
+      pointsPerPlace = 10;
+      break;
+    case 2:
+      pointsPerPlace = 8;
+      break;
+    case 3:
+      pointsPerPlace = 7;
+      break;
+    case 4:
+      pointsPerPlace = 6;
+      break;
+  }
+
+  pointsPerPlace = pointsPerPlace + this.kills * 2;
+  return pointsPerPlace;
+};
+
+Player.prototype.calculateMoney = function () {
+  return;
+};
+
+const imperialHal = new Player(10, 2);
+const abraiele = new Player(8, 1);
+const reps = new Player(7, 3);
+
+console.log(imperialHal.calculatePoints());
+console.log(abraiele.calculatePoints());
+console.log(reps.calculatePoints());
+
+
 const person = {
   firstName: "Brad",
   secondName: "Pit",
@@ -3085,6 +3265,7 @@ function median(arr) {
   }
 }
 
+
 let arr1 = [1, 2, 10];
 let arr2 = [1, 2, 10, 100];
 let arr3 = [1, 2, 10, 100, 500, 800];
@@ -3108,4 +3289,36 @@ function cutComment(line) {
 }
 
 console.log(cutComment("let foo; // bar"));
+
+const teamDelphin = [85, 101, 102];
+const teamKoalas = [20, 20, 20];
+
+const calcAverage = (arr) => {
+  let firstThree = arr.slice(0, 3);
+  let sum = 0;
+  for (const iterator of firstThree) {
+    sum += iterator;
+  }
+
+  return sum / arr.length;
+};
+
+const checkWinner = (teamDelphin, teamKoalas) => {
+  if (teamDelphin / teamKoalas > 2) {
+    return `Team Delphin win (${teamDelphin} vs ${teamKoalas}) `;
+  } else if (teamKoalas / teamDelphin > 2) {
+    return `Team Koalas win (${teamDelphin} vs ${teamKoalas}) `;
+  } else {
+    return `No team Win, team Delphin ${teamDelphin} vs teamKoalas ${teamKoalas}`;
+  }
+};
+
+const mainFunction = () => {
+  const teamDelphinAverage = calcAverage(teamDelphin);
+  const teamKoalasAverage = calcAverage(teamKoalas);
+  const winner = checkWinner(teamDelphinAverage, teamKoalasAverage);
+  return winner;
+};
+
+console.log(mainFunction(teamDelphin, teamKoalas));
 */
