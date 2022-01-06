@@ -1,6 +1,515 @@
 /*
-
 "use strict";
+
+// //bigest safe js number to be stored corectly without bigInt
+// const bigestSafe = Math.pow(2, 53) - 1; //9007199254740991 16length
+// //with bigInt there are no limits
+// const bigIntNumber = 123456789123456789n;
+// //from primitive to BigInt()
+// const number = 123456;
+// const toBigInt = BigInt(number); //123456n
+
+//checking if a value is a number
+// console.log(Number.isFinite(20)); //true
+// console.log(Number.isFinite("20")); //false
+// console.log(Number.isFinite(23 / 0)); //false
+
+// const calculateBetween = (min, max) => {
+//   const calc = Math.round(Math.random() * (max - min) + min);
+//   if (calc < 10 || calc > 20) {
+//     console.log(`error`, calc);
+//   } else {
+//     console.log(`good`, calc);
+//   }
+// };
+
+// for (let i = 0; i < 100; i++) {
+//   calculateBetween(10, 20);
+// }
+
+//Math is doing type coercion
+// Math.round("25.7"); //26
+// Math.floor(-23.3); //-24
+// Math.trunc(-23.3); //-23
+// //to fixed is taking only number and converting with round to strings
+// (2.7).toFixed(); // 3 *string
+// (-2.7).toFixed(); // -3 *string
+ */
+// let str = "One bot of another";
+
+// const oneWord = function (str) {
+//   return str.replaceAll(" ", "").toLowerCase();
+// };
+
+// console.log(oneWord(str));
+
+// const upperFirstWord = function (str) {
+//   const [first, ...other] = str.split(" ");
+//   return [first.toUpperCase(), ...other].join(" ");
+// };
+
+// const mainFunction = function (str, fn) {
+//   return fn(str);
+// };
+
+// console.log(mainFunction(str, upperFirstWord));
+
+// const greet = (greeting) => {
+//   return (name) => {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// greet("hey")("jonas");
+
+// function deleteNth(arr, n) {}
+
+// let arr1 = [1, 1, 1, 1]; //[1,1,1]
+// let repeat1 = 3;
+
+// let arr2 = [3, 3, 3, 4, 4, 5, 5, 5]; //[3,3,4,4,5,5]
+// let repeat = 2;
+
+// console.log(deleteNth(arr1, repeat1));
+
+// const lufthansa = {
+//   airline: "Lufthansa",
+//   iataCode: "LH",
+//   bookings: [],
+//   book(flightNum, name) {
+//     // console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode} ${this.flightNum}`, name });
+//   },
+// };
+
+// lufthansa.book(635, "Jonas Schmedtmann");
+
+// const eurowings = {
+//   name: "Eurowings",
+//   iataCode: "EW",
+//   bookings: [],
+// };
+
+// const book = lufthansa.book;
+// book.call(eurowings, 23, "Sarah");
+// // console.log(eurowings)
+
+// const person = {
+//   name: "Boris",
+//   age: 30,
+//   houses: 0,
+//   people: [],
+//   createOutput(name, age, houses) {
+
+//       `${this.name} is ${this.age} years old and have ${this.houses} houses`
+
+//     person.people.push({ name: this.name, age: this.age, houses: this.houses });
+//   },
+// };
+
+// person.createOutput();
+
+// const futurePerson1 = {
+//   name: "Boris",
+//   age: 33,
+//   houses: 1,
+// };
+// const futurePerson2 = {
+//   name: "Boris",
+//   age: 35,
+//   houses: 2,
+// };
+// const futurePerson3 = {
+//   name: "Boris",
+//   age: 37,
+//   houses: 3,
+// };
+
+// const array = [];
+
+// person.createOutput.call(futurePerson1, 1, "abc");
+// person.createOutput.apply(futurePerson2, array);
+// const storedFunction = person.createOutput.bind(futurePerson3);
+// storedFunction();
+
+// // console.log(person.people);
+
+// // document
+// //   .querySelector(".buy")
+// //   .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+
+// const addTax = (rate, value) => value + value * rate;
+
+// addTax(0.1, 200); //220
+// const addVat = addTax.bind(null, 0.2); //setting this to null and first arg to 0.2 addVat is now same function as addTax just with preseted rate of 0.2
+// // console.log(addVat(200)); //240
+
+const poll = {
+  question: "What is your favourite programming language?",
+  options: [`0: Javascript`, "1: Pyton", "2: Rust", "3: C++"],
+  answers: new Array(4).fill(0),
+  registerNewAnswer() {
+    const answer = prompt(
+      `${this.question}\n ${this.options.join("\n")} Write option number`,
+      0
+    );
+    if (answer >= 0 && answer < this.answers.length) {
+      this.answers[answer]++;
+    }
+    this.displayResults(this.answers);
+  },
+  displayResults(type) {
+    if (typeof type === "object") {
+      console.log(type);
+    } else if (typeof type === "string") {
+      console.log(`Poll results are ${this.answers.join("")}`);
+    }
+  },
+};
+
+document
+  .querySelector(".add-items-button")
+  .addEventListener("click", poll.registerNewAnswer.bind(poll));
+
+// const array = [1, 2, 3, 4];
+
+// document
+//   .querySelector(".add-items-button")
+//   .addEventListener("click", poll.displayResults.bind(this, array));
+
+//imediately invoked function expressions IIFE
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(passengerCount);
+  };
+};
+
+const savedFunction = secureBooking();
+
+(function () {
+  const header = document.querySelector("h1");
+  header.style.color = "red";
+
+  document.querySelector("body").addEventListener("click", () => {
+    header.style.color = "blue";
+  });
+})();
+
+
+// //TEST DATA
+// //ok amount === range 10% above and 10% below recomend portion
+
+// const dogs = [
+//   {
+//     weight: 22,
+//     curFood: 250,
+//     owners: ["Alice", "Bob"],
+//   },
+//   {
+//     weight: 8,
+//     curFood: 200,
+//     owners: ["Matilda"],
+//   },
+//   {
+//     weight: 13,
+//     curFood: 275,
+//     owners: ["Sarah", "John"],
+//   },
+//   {
+//     weight: 32,
+//     curFood: 340,
+//     owners: ["Michael"],
+//   },
+// ];
+
+// const ownersEatTooMuch = [];
+// const ownersEatTooLittle = [];
+// const ownersEatOk = [];
+
+// const calcCurentEatingStatus = function (obj) {
+//   const curStatus =
+//     obj.curFood > obj.recommendedFood + obj.recommendedFood / 10
+//       ? "too much"
+//       : obj.curFood < obj.recommendedFood - obj.recommendedFood / 10
+//       ? "too little"
+//       : "ok";
+//   return curStatus;
+// };
+
+// dogs.forEach((obj) => {
+//   obj.recommendedFood = Math.round(obj.weight ** 0.75 * 28);
+
+//   if (obj.owners.includes("Sarah")) {
+//     calcCurentEatingStatus(obj);
+//   }
+
+//   if (calcCurentEatingStatus(obj) === "too much") {
+//     ownersEatTooMuch.push(...obj.owners);
+//   } else if (calcCurentEatingStatus(obj) === "too little") {
+//     ownersEatTooLittle.push(...obj.owners);
+//   }
+
+//   if (calcCurentEatingStatus(obj) === "ok") {
+//     console.log(`true, ${obj.owners} its feeding ok his dog`);
+//     ownersEatOk.push(...obj.owners);
+//   }
+// });
+
+// const dogSarah = dogs.find((dog) => dog.owners.includes("Sarah"));
+
+// const tooMuchString =
+//   ownersEatTooMuch.join(" and ") + "'s " + "dogs eat too much";
+// const tooLittleString =
+//   ownersEatTooLittle.join(" and ") + "'s " + "dogs eat too little";
+
+// // console.log(tooMuchString);
+// // console.log(tooLittleString);
+// // console.log(ownersEatOk);
+
+// const shalowCopyDogs = dogs
+//   .slice()
+//   .sort((obj1, obj2) => obj1.recommendedFood - obj2.recommendedFood);
+
+// //
+// //
+// //
+// //
+// //!exercise recreate examples below using only reduce
+// //1
+// const bankDepositSum = accounts
+//   .flatMap((acc) => acc.movements)
+//   .filter((number) => number > 0)
+//   .reduce((prev, cur) => prev + cur, 0);
+
+// // console.log(bankDepositSum);
+
+// //2
+// const atLeastOneThousand1 = accounts
+//   .flatMap((acc) => acc.movements)
+//   .filter((number) => number >= 1000).length;
+// // console.log(atLeastOneThousand1);
+
+// //2.1
+// const atLeastOneThousand2 = accounts
+//   .flatMap((acc) => acc.movements)
+//   .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
+// // console.log(atLeastOneThousand2);
+
+// //3
+// const sums = accounts
+//   .flatMap((acc) => acc.movements)
+//   .reduce(
+//     (sums, cur) => {
+//       cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+//       return sums;
+//     },
+//     { deposits: 0, withdrawals: 0 }
+//   );
+
+// // console.log(sums);
+
+// //3.1
+// const { deposits, withdrawals } = accounts
+//   .flatMap((acc) => acc.movements)
+//   .reduce(
+//     (sums, cur) => {
+//       sums[cur > 0 ? "deposits" : "withdrawals"] += cur;
+//       return sums;
+//     },
+//     { deposits: 0, withdrawals: 0 }
+//   );
+// // console.log(deposits, withdrawals);
+
+// //4
+// //this i a nice title case -> This Is a Nice Title Case
+// const convertTitleCase = function (title) {
+//   const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
+//   const exceptions = ["a", "an", "the", "but", "or", "on", "in", "with"];
+
+//   const titleCase = title
+//     .toLowerCase()
+//     .split(" ")
+//     .map((word) => (exceptions.includes(word) ? word : capitalize(word)))
+//     .join(" ");
+//   return capitalize(titleCase);
+// };
+
+// const word1 = "this i a nice title case";
+// const word2 = "and this i a nice title case";
+// console.log(convertTitleCase(word1)); //This I a Nice Title Case
+// console.log(convertTitleCase(word2)); // "And This I a Nice Title Case"
+
+// labelBalance.addEventListener("click", function (e) {
+//   const allValues = Array.from(
+//     document.querySelectorAll(".movements__value"),
+//     (el) => Number(el.textContent.replace("€", ""))
+//   );
+// });
+
+// //[1,2,3,4,5,6,7,8,9,10]
+// const programArray1 = Array.from({ length: 10 }, (_, i) => i + 1);
+
+// //create a nonFixed length array with 100 random dice roll from 1 to 6
+// const programArray2 = Array.from({ length: 100 }, (_, i) =>
+//   Math.round(Math.random() * 5 + 1)
+// );
+
+// const arr = [1, 2, 3, 4, 5];
+// arr.fill("a", 2, 4); //arr ===[1, 2, 'a', 'a', 5]
+
+//any number in the array that is bigger than 0
+// const anyDeposits = movements.some((mov) => mov > 0); //true
+
+// //for every amount in the array return true only if all are bigger than 0
+// const allDeposits = movements.every((mov) => mov > 0); //false
+
+// //flat nested array with specific level deep default = flat() ===flat(1)
+// const arrDeep = [[1, 2, [3, 4]], 5];
+// const returnedArr = arrDeep.flat(2); //[1,2,3,4,5]
+
+// //flatMap is map with flat(1) combined
+// const arrays = [{ arr: [1, 2, 3] }, { arr: [4, 5, 6] }, { arr: [7, 8, 9] }];
+// const returnedArr2 = arrays.flatMap((arr) => arr.arr); //[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+// const account = accounts.find((acc) => acc.userName === "js");
+
+// const eurToUsd = 1.1;
+
+// const totalDepositsUsd = movements
+//   .filter((mov) => mov > 0)
+//   .map((mov) => mov * eurToUsd)
+//   .reduce((acc, mov) => acc + mov, 0);
+
+// console.log(totalDepositsUsd);
+
+// //1MAP
+// function deleteNth(arr, n) {
+//   const newArr = [];
+//   const stat = {};
+//   for (const element of arr) {
+//     if (stat.hasOwnProperty(element)) {
+//       stat[element]++;
+//     } else {
+//       stat[element] = 1;
+//     }
+
+//     if (stat[element] <= n) {
+//       newArr.push(element);
+//     }
+//   }
+//   return newArr;
+// }
+
+// const array4 = [15, 15, 15, 20, 20, 20, 30, 30];
+// const repeat4 = 2;
+
+// console.log(deleteNth(array4, repeat4));
+
+// function deleteNth(arr, n) {
+//   const map = new Map();
+//   const newArr = [];
+
+//   for (el of arr) {
+//     if (!map.has(el))
+//       // Add to the map
+//       map.set(el, 1);
+//     else if (map.get(el) === n)
+//       // Skip this element
+//       continue;
+//     // Increment this element
+//     else map.set(el, map.get(el) + 1);
+
+//     newArr.push(el);
+//   }
+
+//   return newArr;
+// }
+
+// const max = movements.reduce((prev, cur) => {
+//   if (prev > cur) {
+//     return prev;
+//   } else {
+//     return cur;
+//   }
+// }, movements[0]);
+// console.log(max);
+// //1 if age<=2{
+// // humanAge*2
+// // }else{
+// // humanAge*4
+// }
+
+// const calcAverageHumanAge = function (arrDogAges) {
+//   let humanAge = arrDogAges.map((dog) => {
+//     return dog <= 2 ? dog * 2 : 16 + dog * 4;
+//   });
+//   humanAge = humanAge.filter((age) => age >= 18);
+//   return humanAge.reduce((prev, curent) => prev + curent) / humanAge.length;
+// };
+
+// const calcAverageHumanAge2 = function (arrDogAges) {
+//   return arrDogAges
+//     .map((dog) => {
+//       return dog <= 2 ? dog * 2 : 16 + dog * 4;
+//     })
+//     .filter((age) => age >= 18)
+//     .reduce((prev, curent, i, arr) => {
+//       console.log(arr.length);
+//       return prev + curent / arr.length;
+//     }, 0);
+// };
+
+// const data1 = [5, 2, 4, 1, 15, 8, 3];
+// console.log(calcAverageHumanAge2(data1));
+
+//
+//
+//
+
+// const balance = movements.reduce((prev, cur, i, arr) => {
+//   debugger;
+//   return prev + cur;
+// }, 0);
+
+// console.log(balance);
+
+// const deposits = movements.filter((mov) => {
+//   return mov > 0;
+// });
+
+// const withdrawals = movements.filter((mov) => mov < 0);
+
+// console.log(deposits);
+// console.log(withdrawals);
+
+// const convertingMovements = movements.map((mov) => mov * 1.1);
+
+//
+//
+// const juliaArr = [3, 5, 2, 12, 7];
+// const kateArr = [9, 16, 6, 8, 3];
+
+// const checkDogs = function (juliaArr, kateArr) {
+//   const juliaLocalArr = juliaArr.slice(1, -2);
+//   const combinedData = [...juliaLocalArr, ...kateArr];
+//   combinedData.forEach((dog, index) => {
+//     console.log(
+//       `Dog number ${index} is ${
+//         dog >= 3 ? "an adult" : "a puppy"
+//       } and is ${dog} years old`
+//     );
+//   });
+// };
+
+// checkDogs(juliaArr, kateArr);
+
+
 // const dreamsBtn = document.querySelector(".add-items-button");
 
 // const jonas = {
