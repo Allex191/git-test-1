@@ -1,0 +1,168 @@
+.body {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  height: 100vh;
+  background: #fc00ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    200deg,
+    #00dbde,
+    #941d96
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    200deg,
+    #00dbde,
+    #941d96
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+*/
+}
+
+.header {
+  max-width: 500px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  color: white;
+}
+
+.encrypter {
+  margin-top: clamp(0px, 5vh, 200px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+}
+
+.h2-title {
+  margin-bottom: 5px;
+}
+
+.encrypter__message {
+  width: 335px;
+  height: 169px;
+  min-width: 100px;
+  max-height: 500px;
+  max-width: 90vw;
+}
+
+.encrypter__message-completed {
+  background-color: rgb(199, 199, 199);
+  border: 2px solid greenyellow;
+}
+
+.encrypter__message-completed:focus {
+  outline: 1px solid greenyellow;
+}
+
+.encrypter__user-password-title {
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.encrypter__message-copy-btn {
+  margin-left: auto;
+  margin-right: 40px;
+}
+
+.encrypter__user-password-input {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.encrypter__user-password-btn {
+  margin-bottom: 15px;
+}
+
+.encrypter__btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-display: row;
+}
+
+.btn {
+  box-shadow: 0px 0px 19px 1px #1c8fc4;
+  background-color: #327343;
+  border-radius: 15px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 18px;
+  padding: 12px 34px;
+  text-decoration: none;
+  transition: opacity 1s ease-in;
+  user-select: none;
+}
+.btn:hover {
+  /* background: linear-gradient(rgba(207, 23, 23, 0.24)); */
+  /* background: linear-gradient(to bottom, #1af5062c 5%, #00ff0d2a 5%); */
+  /* background-color: #6fd637; */
+}
+.btn:active {
+  position: relative;
+  top: 1px;
+}
+
+.btn-hidden {
+  opacity: 0;
+  margin-bottom: -5px;
+}
+
+.encrypter__btn-encrypt {
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #bd5aff 0,
+    #75260b 100%
+  );
+}
+
+.encrypter__btn-encrypt:hover {
+  background: linear-gradient(to bottom, #1af5062c 5%, #cc3d2a 5%);
+}
+
+.encrypter__btn-decrypt {
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #0e1a52 0,
+    #2a2f75 100%
+  );
+}
+
+.encrypter__btn-decrypt:hover {
+  background: linear-gradient(to bottom, #1e06f52c 5%, #21b628 5%);
+}
+
+.encrypter__copy-output-message {
+  display: block;
+  margin-top: 20px;
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #2f520e 0,
+    #80c983 100%
+  );
+}
+
+.encrypter__required-popup {
+  border-radius: 5px;
+  transition: all 2s ease-in;
+  padding: 2px;
+}
+
+.encrypter__required-popup-enable {
+  background-color: rgb(122, 33, 33);
+
+  color: rgb(255, 254, 254);
+  transition: background-color 1s linear;
+}
+
+.btn-disabled {
+  background-image: radial-gradient(#969696, #6b6a6a);
+  box-shadow: 0px 0px 0px 1px #1f1f1f;
+  pointer-events: none;
+}
+.btn-disabled:hover {
+  background-image: radial-gradient(#969696, #6b6a6a);
+}

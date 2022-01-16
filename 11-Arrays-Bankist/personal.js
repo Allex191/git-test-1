@@ -296,3 +296,4 @@ currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
  */
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Encryptor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body class="body">
+    <header class="header">
+        <h1 class="title">MeSsaG3 Encryptor</h1>
+        <div class="encrypter">
+            <h2 class="h2-title">Input your encrypted/decrypted message</h2>
+            <textarea minlength="8" class="encrypter__message encrypter__message-completed" name="userMessage" id="" cols="30" rows="10"
+                required></textarea>
+            <button class="encrypter__message-copy-btn btn-hidden">Copy Message</button>
+            <p class="encrypter__user-password-title">Input your password for encryption</p>
+            <input minlength="8" type="text" class="encrypter__user-password-input " required>
+            <button class="encrypter__user-password-btn btn-hiddend">Copy Password</button>
+            <div class="encrypter__btns">
+                <button class="encrypter__btn-encrypt btn">Encrypt</button>
+                <button class="encrypter__btn-decrypt btn">Decrypt</button>
+            </div>
+            <p class="encrypter__encrypted-message"></p>
+            <div class="encrypter__required-popup">*Message and password must be
+                minimum 8 characters each</div>
+        </div>
+    </header>
+</body>
+
+</html>
