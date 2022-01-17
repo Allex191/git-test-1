@@ -2,21 +2,21 @@ const encrypter = document.querySelector(".encrypter");
 const innerPasword = ["!", "*", "%", "v", "@", "H", "m", "$", "^", "g"];
 const textarea = document.querySelector(".encrypter__message");
 const passwordInput = document.querySelector(".encrypter__user-password-input");
+const encryptBtn = encrypter.querySelector(".encrypter__btn-encrypt");
+const decryptBtn = encrypter.querySelector(".encrypter__btn-decrypt");
+let lastBtn = null;
 
 //encrypt
 //1 firstIter text + innerPsw get odd and add them to the left and rest to the right
 //2 secondIter newText + psw and all odd left other right
 function encrypt(text, psw) {
-  let localText = text.trim();
-  let localPsw = psw.trim();
-
   let leftHalf = "";
   let rightHalf = "";
-  let fullText = localText + innerPasword.join("");
+  let fullText = text + innerPasword.join("");
 
   for (let i = 0; i < 2; i++) {
     if (i === 1) {
-      fullText += localPsw;
+      fullText += psw;
     }
     for (let j = 0; j < fullText.length; j++) {
       const element = fullText[j];
@@ -43,11 +43,8 @@ function encrypt(text, psw) {
 //5 check psw
 
 function decrypt(encryptedText, psw) {
-  let localText = encryptedText.trim();
-  let localPsw = psw.trim();
-
   let leftHalf, rightHalf;
-  let fullText = localText;
+  let fullText = encryptedText;
 
   for (let j = 0; j < 2; j++) {
     let halfIndex = Math.floor(fullText.length / 2);
@@ -66,7 +63,7 @@ function decrypt(encryptedText, psw) {
     }
 
     if (j === 0) {
-      fullText = fullText.slice(0, fullText.length - localPsw.length);
+      fullText = fullText.slice(0, fullText.length - psw.length);
     }
     if (j === 1) {
       fullText = fullText.slice(0, fullText.length - innerPasword.length);
@@ -77,8 +74,8 @@ function decrypt(encryptedText, psw) {
 }
 
 const getUserText = function () {
-  const textareaValue = textarea.value;
-  const passwordValue = passwordInput.value;
+  const textareaValue = textarea.value.trim();
+  const passwordValue = passwordInput.value.trim();
   return [textareaValue, passwordValue];
 };
 
@@ -96,53 +93,80 @@ const checkInputsLength = function (userText, userPassword) {
   }
 };
 
-const disableButton = function (type) {
-  type.setAttribute("disabled", "");
-  type.classList.add("btn-disabled");
+const disableButton = function (btnEncOrDec) {
+  btnEncOrDec.classList.toggle("btn-disabled");
+  btnEncOrDec.toggleAttribute("disabled");
+
+  if (lastBtn) {
+    lastBtn.classList.toggle("btn-disabled");
+    lastBtn.toggleAttribute("disabled");
+  }
+  lastBtn = btnEncOrDec;
 };
 
-const displayInputsContent = function (type, text, userPassword) {
-  if (type.classList.contains("encrypter__btn-encrypt")) {
-    disableButton(type);
+const toggleSuccessEncrypt = function () {
+  textarea.classList.toggle("encrypter__success-completed");
+  passwordInput.classList.toggle("encrypter__success-completed");
+  const copyBtns = document.querySelectorAll(
+    ".encrypter__message-btn , .encrypter__user-password-btn"
+  );
+  copyBtns.forEach((btn) => btn.classList.remove("btn-hidden"));
+};
+
+const displayInputsContent = function (btnEncOrDec, text, userPassword) {
+  if (btnEncOrDec.classList.contains("encrypter__btn-encrypt")) {
+    textarea.setAttribute("readonly", "");
+  } else {
+    textarea.removeAttribute("readonly");
   }
+  disableButton(btnEncOrDec);
+  toggleSuccessEncrypt();
   textarea.value = text;
-  textarea.setAttribute("readonly", "");
 
   passwordInput.value = userPassword;
   passwordInput.setAttribute("readonly", "");
 };
 
-const encryptHandler = function (e) {
+const copyInputText = function (btnNode) {
+  let localInput = textarea;
+  navigator.clipboard.writeText(textarea.value);
+  if (btnNode.classList.contains("encrypter__user-password-btn")) {
+    localInput = passwordInput;
+    navigator.clipboard.writeText(passwordInput.value);
+  }
+  localInput.select();
+  localInput.setSelectionRange(0, 99999);
+};
+
+const mainHandler = function (btnNode, btnType) {
   const [userText, userPassword] = getUserText();
   if (checkInputsLength(userText, userPassword)) {
     return;
   }
-  const encryptedText = encrypt(userText, userPassword);
-  displayInputsContent(e, encryptedText, userPassword);
+  if (btnType === "encrypt") {
+    const encryptedText = encrypt(userText, userPassword);
+    displayInputsContent(btnNode, encryptedText, userPassword);
+  }
+  if (btnType === "decrypt") {
+    const decryptedText = decrypt(userText, userPassword);
+    displayInputsContent(btnNode, decryptedText, userPassword);
+  }
+  if (btnType === "copy") {
+    copyInputText(btnNode);
+  }
 };
 
 encrypter.addEventListener("click", function (e) {
   if (e.target.classList.contains("encrypter__btn-encrypt")) {
-    encryptHandler(e.target);
+    mainHandler(e.target, "encrypt");
+  }
+  if (e.target.classList.contains("encrypter__btn-decrypt")) {
+    mainHandler(e.target, "decrypt");
+  }
+  if (e.target.classList.contains("encrypter__message-btn")) {
+    mainHandler(e.target, "copy");
+  }
+  if (e.target.classList.contains("copy-btn")) {
+    mainHandler(e.target, "copy");
   }
 });
-
-//
-//
-//
-//test encryptor
-const userText1 = "This is an encrypted message";
-const userPsw1 = "aaaaaaaa";
-
-const userText2 = "Hello Emit";
-const userPsw2 = "fwf1451wf5a84fw";
-
-const encryptedText = "s eydsev$T anp s!@^aaaahinctma*Hgis reeg%maaaa";
-const pswEncrypted = "aaaaaaaa";
-
-const encryptedText2 = "lm*HglE!@^w15w58fe tv$Hoi%mff41fa4w";
-
-// console.log("encrypted--", encrypt(userText1, userPsw1));
-console.log("encrypted--", encrypt(userText2, userPsw2));
-console.log("decrypted--", decrypt(encryptedText2, userPsw2));
-// console.log("decrypted--", decrypt(encryptedText, pswEncrypted));
