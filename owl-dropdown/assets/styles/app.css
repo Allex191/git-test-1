@@ -8,6 +8,7 @@ html {
 
 body {
   margin: 0;
+  background-color: gray;
 }
 
 header {
@@ -63,7 +64,7 @@ button:active {
   width: 90%;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.26);
-  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .add-items__visible {

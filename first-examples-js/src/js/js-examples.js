@@ -2,6 +2,390 @@
 "use strict";
 
 
+// const Person = function (name, age) {
+//   this.name = name;
+//   this.age = age;
+// };
+
+// const obj1 = new Person("Jonas", "1992");
+// const obj2 = new Person("Mark", "1993");
+
+// console.log(obj1);
+// console.log(obj2);
+
+// Person.prototype.calcAge = function () {
+//   return 2037 - this.age;
+// };
+
+// console.log(obj1.calcAge());
+
+// console.log(Person.prototype.isPrototypeOf(obj1));
+// console.log(Person.prototype.isPrototypeOf(Person));
+
+// Person.prototype.location = "Bucharest";
+// console.dir(Person);
+
+// console.log(Person.hasOwnProperty("calcAge"));
+
+// console.log(obj1.__proto__);
+
+// console.log(Person.prototype.constructor);
+
+// console.log(Person.prototype); //prototype for instances
+// console.log(obj1.__proto__); //__proto__ property of instances
+
+// console.dir([].__proto__.__proto__);
+
+// console.log([1, 2, 3].toString());
+
+// console.log([].__proto__);
+
+// const obj3 = { 1: "a" };
+// console.log(Object.isPrototypeOf({}));
+// console.log(obj3.__proto__);
+
+// const Car = function (make, speed) {
+//   this.make = make;
+//   this.speed = +speed;
+// };
+
+// Car.prototype.accelerate = function () {
+//   this.speed += 10;
+// };
+
+// Car.prototype.brake = function () {
+//   this.speed += 5;
+// };
+
+// const car1 = new Car("BMW", "120");
+// const car2 = new Car("Mercedes", "120");
+
+// car1.accelerate();
+// car2.accelerate();
+// car1.brake();
+// car2.brake();
+// car2.brake();
+
+// const Player = function (name, role, strength, age) {
+//   this.name = name;
+//   this.role = role;
+//   this.strength = strength;
+//   this.age = age;
+// };
+
+// Player.prototype.playing = function () {
+//   this.newStrength = this.strength - 30;
+//   console.log(
+//     `This ${this.role} is going further but had a hit and now its having ${this.newStrength} strength and ${this.hit}`
+//   );
+// };
+
+// Player.prototype.hit = 30;
+
+// const player1 = new Player("Bot1", "gunner", 80, 40);
+// const player2 = new Player("Bot2", "defense", 100, 30);
+
+// class PersonCl {
+//   constructor(name, role, strength, age) {
+//     this.name = name;
+//     this.role = role;
+//     this.strength = strength;
+//     this.age = age;
+//   }
+
+//   // instance method are added to prototype property and are available to instances
+//   playing() {
+//     console.log(`This ${this.name} is a ${this.role} and has ${this.strength}`);
+//   }
+
+//   //static method not available for instances
+//   static hey() {
+//     console.log("hey");
+//   }
+// }
+
+// // PersonCl.hey();
+
+// const player3 = new PersonCl("Boris", "speeder", 120, 30);
+// const player4 = new PersonCl("john", "eater", 150, 35);
+
+// const objGetSet = {
+//   name: "John",
+//   movemens: [10, 20, 30, 40],
+
+//   get lastMov() {
+//     return this.movemens.slice(-1).pop();
+//   },
+
+//   set lastMov(mov) {
+//     this.movemens.push(mov);
+//   },
+// };
+
+// // console.log(objGetSet.lastMov); //40
+// // objGetSet.lastMov = 50;
+// // console.log(objGetSet.lastMov); //50
+
+// // console.dir(Number.parseFloat);
+// //
+// //
+// //
+// //
+
+// function makeString(s) {
+//   // const regex = /^[a-z]|\s[a-z]/gi;
+//   const regex = /\b\w/gi;
+//   // return s.match(regex).join("").replace(/\s/g, "");
+//   return s.match(regex).join("");
+// }
+
+// const s1 = "brown eyes are nice";
+
+// // console.log(makeString(s1));
+
+// //Object.create() *linking person6 to the PersonProto prototype
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   },
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+// };
+
+// const person6 = Object.create(PersonProto);
+
+// // person6.init("John", 1991);
+// // person6.calcAge();
+// //
+// //
+// //
+
+// class CarCl {
+//   constructor(make, speed) {
+//     this.make = make;
+//     this.speed = speed;
+//   }
+//   accelerate() {
+//     this.speed += 10;
+//   }
+//   brake() {
+//     this.speed -= 5;
+//   }
+//   get speedUs() {
+//     return (this.speed /= 1.6);
+//   }
+//   set speedUs(speed) {
+//     this.speed = speed * 1.6;
+//   }
+// }
+
+// const car3 = new CarCl("audi", 120);
+// car3.speedUs = 140;
+// // console.log(car3); //speed:224
+// // console.log(car3.speedUs); //140
+
+// //
+// //
+// //
+// //
+// const Person = function (firstName, birthYear) {
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+// };
+// Person.prototype.introducePerson = function () {
+//   console.log(`${this.firstName} was born in ${this.birthYear}`);
+// };
+
+// const Student = function (firstName, birthYear, course) {
+//   Person.call(this, firstName, birthYear);
+//   this.course = course;
+// };
+// //linking Student prototype to the Person prototype
+// Student.prototype = Object.create(Person.prototype);
+// Student.prototype.constructor = Student;
+// Student.prototype.introduceStudent = function () {
+//   console.log(`${this.firstName} is taking a course of ${this.course}`);
+// };
+// const mike = new Student("jimmy", 1992, "Algebra");
+// // mike.introduceStudent();
+// // mike.introducePerson();
+
+// const Car = function (make, speed) {
+//   this.make = make;
+//   this.speed = +speed;
+// };
+
+// Car.prototype.accelerate = function () {
+//   this.speed += 10;
+//   console.log("speed", this.speed);
+// };
+
+// Car.prototype.brake = function () {
+//   this.speed -= 5;
+//   console.log("speed", this.speed);
+// };
+
+// const car1 = new Car("BMW", "120");
+// const car2 = new Car("Mercedes", "120");
+
+// const EV = function (make, speed, charge) {
+//   Car.call(this, make, speed);
+//   this.charge = charge;
+// };
+
+// EV.prototype = Object.create(Car.prototype);
+// EV.prototype.constructor = EV;
+
+// EV.prototype.chargeBattery = function (chargeTo) {
+//   this.charge = chargeTo;
+// };
+
+// EV.prototype.accelerate = function () {
+//   this.speed += 20;
+//   this.charge -= 1;
+//   console.log(
+//     `${this.make} going at ${this.speed} with charge at ${this.charge}`
+//   );
+// };
+
+// const elcar1 = new EV("tesla", 120, 70);
+
+// elcar1.accelerate();
+// elcar1.accelerate();
+// elcar1.brake();
+
+// console.log(elcar1);
+
+// class PersonCl {
+//   constructor(fullName, birthYear) {
+//     this.fullName = fullName;
+//     this.birthYear = birthYear;
+//   }
+
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   }
+//   get age() {
+//     return 2037 - this.birthYear;
+//   }
+
+//   set fullName(name) {
+//     if (name.includes(" ")) this._fullname = name;
+//     else alert(`${name} is not a full name`);
+//   }
+//   get fullName() {
+//     return this._fullname;
+//   }
+
+//   static hey() {
+//     console.log(`hey there `);
+//   }
+// }
+
+// class StudentCl extends PersonCl {
+//   constructor(fullName, birthYear, course) {
+//     //always needs to to happen first
+//     super(fullName, birthYear);
+//     this.course = course;
+//   }
+
+//   introduce() {
+//     console.log(`${this._fullname} take a course of ${this.course}`);
+//   }
+// }
+
+// class Student2 extends PersonCl {
+//   //if there are no new properties you dont need to create a constructor and to call super
+//   introduce2() {
+//     console.log(`${this.fullName} is from ${this.birthYear}`);
+//   }
+// }
+
+// const studentNou = new StudentCl("Vasile Borisovici", 1991, "doctor");
+// const studentBotanica = new StudentCl("Grisa tudorovici", 1994, "masterat");
+// studentBotanica.introduce();
+
+// const PersonProto = {
+//   calcAge() {
+//     console.log(`${this.firstName} is born in ${this.birthYear}`);
+//   },
+
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+// };
+// //link studentProto prototype to PersonProto prototype
+// const StudentProto = Object.create(PersonProto);
+// //add method to studentProto
+// StudentProto.showStudentName = function () {
+//   console.log(`This student name is ${this.firstName}`);
+// };
+
+// StudentProto.init = function (firstName, birthYear, course) {
+//   PersonProto.init.call(this, firstName, birthYear);
+//   this.course = course;
+// };
+
+// StudentProto.introduce = function () {
+//   console.log(
+//     `My name is ${this.firstName} from ${this.birthYear} study ${this.course}`
+//   );
+// };
+
+// //link jay prototype to studentProto prototype
+// const jay = Object.create(StudentProto);
+// jay.init("bob", 1991, "computer science");
+// jay.introduce();
+
+
+// function longestConsec(arr, n) {
+//   if (arr.length === 0 || n > arr.length || n <= 0) return "";
+
+//   const localArr = [...arr];
+//   const obj = {};
+//   let finalStr = "";
+
+//   localArr.sort((a, b) => {
+//     return b.length - a.length;
+//   });
+
+//   localArr.forEach((word, i) => {
+//     if (i < n) {
+//       obj[arr.indexOf(word)] = word;
+//     }
+//   });
+//   console.log("locR", localArr);
+
+//   for (const entry in obj) {
+//     finalStr += obj[entry];
+//   }
+//   console.log("obj", obj);
+
+//   return finalStr;
+// }
+
+// const list1 = ["zone", "abigail", "thetaaa", "form", "libe", "zas"]; // "abigailthetaaa"
+// const n1 = 2;
+// const list2 = ["it", "wkppv", "ixoyx", "3452", "zzzzzzzzzzzz"]; // "ixoyx3452zzzzzzzzzzzz"
+// const n2 = 3;
+// const list3 = ["wlwsasphmxx", "owiaxujylentrklctozmymu", "wpgozvxxiu"]; //"wlwsasphmxxowiaxujylentrklctozmymu")
+// const n3 = 2;
+
+// // console.log(longestConsec(list1, n1));
+// console.log(longestConsec(list2, n2));
+// // console.log(longestConsec(list3, n3));
+
+// //1 create while whith till array length is not egual with k
+// //2 call reduce sort and find biggest string
+
+
+
+
+
+
 function encrypt(text, n) {
   if (text === null || n <= 0) {
     return text;
@@ -409,62 +793,62 @@ function order(words) {
 // const addVat = addTax.bind(null, 0.2); //setting this to null and first arg to 0.2 addVat is now same function as addTax just with preseted rate of 0.2
 // // console.log(addVat(200)); //240
 
-const poll = {
-  question: "What is your favourite programming language?",
-  options: [`0: Javascript`, "1: Pyton", "2: Rust", "3: C++"],
-  answers: new Array(4).fill(0),
-  registerNewAnswer() {
-    const answer = prompt(
-      `${this.question}\n ${this.options.join("\n")} Write option number`,
-      0
-    );
-    if (answer >= 0 && answer < this.answers.length) {
-      this.answers[answer]++;
-    }
-    this.displayResults(this.answers);
-  },
-  displayResults(type) {
-    if (typeof type === "object") {
-      console.log(type);
-    } else if (typeof type === "string") {
-      console.log(`Poll results are ${this.answers.join("")}`);
-    }
-  },
-};
-
-document
-  .querySelector(".add-items-button")
-  .addEventListener("click", poll.registerNewAnswer.bind(poll));
-
-// const array = [1, 2, 3, 4];
+// const poll = {
+//   question: "What is your favourite programming language?",
+//   options: [`0: Javascript`, "1: Pyton", "2: Rust", "3: C++"],
+//   answers: new Array(4).fill(0),
+//   registerNewAnswer() {
+//     const answer = prompt(
+//       `${this.question}\n ${this.options.join("\n")} Write option number`,
+//       0
+//     );
+//     if (answer >= 0 && answer < this.answers.length) {
+//       this.answers[answer]++;
+//     }
+//     this.displayResults(this.answers);
+//   },
+//   displayResults(type) {
+//     if (typeof type === "object") {
+//       console.log(type);
+//     } else if (typeof type === "string") {
+//       console.log(`Poll results are ${this.answers.join("")}`);
+//     }
+//   },
+// };
 
 // document
 //   .querySelector(".add-items-button")
-//   .addEventListener("click", poll.displayResults.bind(this, array));
+//   .addEventListener("click", poll.registerNewAnswer.bind(poll));
 
-//imediately invoked function expressions IIFE
+// // const array = [1, 2, 3, 4];
 
-const secureBooking = function () {
-  let passengerCount = 0;
+// // document
+// //   .querySelector(".add-items-button")
+// //   .addEventListener("click", poll.displayResults.bind(this, array));
 
-  return function () {
-    passengerCount++;
-    console.log(passengerCount);
-  };
-};
+// //imediately invoked function expressions IIFE
 
-const savedFunction = secureBooking();
+// const secureBooking = function () {
+//   let passengerCount = 0;
 
-(function () {
-  const header = document.querySelector("h1");
-  header.style.color = "red";
+//   return function () {
+//     passengerCount++;
+//     console.log(passengerCount);
+//   };
+// };
 
-  document.querySelector("body").addEventListener("click", () => {
-    header.style.color = "blue";
-  });
-})();
+// const savedFunction = secureBooking();
 
-// //TEST DATA
+// (function () {
+//   const header = document.querySelector("h1");
+//   header.style.color = "red";
+
+//   document.querySelector("body").addEventListener("click", () => {
+//     header.style.color = "blue";
+//   });
+// })();
+
+// // //TEST DATA
 // //ok amount === range 10% above and 10% below recomend portion
 
 // const dogs = [
