@@ -60,8 +60,8 @@ window.addEventListener("load", function () {
       this.weight = 1;
     }
     draw(context) {
-    //   context.strokeStyle = "white";
-    //   context.strokeRect(this.x, this.y, this.width, this.height);
+      //   context.strokeStyle = "white";
+      //   context.strokeRect(this.x, this.y, this.width, this.height);
       context.drawImage(
         this.image,
         this.frameX * this.width,
@@ -172,8 +172,8 @@ window.addEventListener("load", function () {
       this.markedForDeletion = false;
     }
     draw(context) {
-    //   context.strokeStyle = "white";
-    //   context.strokeRect(this.x, this.y, this.width, this.height);
+      //   context.strokeStyle = "white";
+      //   context.strokeRect(this.x, this.y, this.width, this.height);
       context.drawImage(
         this.image,
         this.frameX * this.width,

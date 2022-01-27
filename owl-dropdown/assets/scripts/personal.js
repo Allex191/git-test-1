@@ -64,7 +64,7 @@ class Account {
   }
 }
 
-const acc1 = new Account("jonas", "Eur", 1111);
+// const acc1 = new Account("jonas", "Eur", 1111);
 //chainable methods with return this
 // acc1.deposit(300).withdraw(100).aprovePublic(25000).withdraw(200);
 
@@ -112,8 +112,20 @@ class EV extends CarCl {
   }
 }
 
-const car1 = new EV("Rivian", 120, 23);
+// const car1 = new EV("Rivian", 120, 23);
+// car1.accelerate(20).brake(10).chargeBattery(10);
+// car1.accelerate(20).brake(10).chargeBattery(10);
+// car1.accelerate(20).brake(10).chargeBattery(10);
+// car1.accelerate(20).brake(10).chargeBattery(10);
+// car1.accelerate(20).brake(10).chargeBattery(10);
 
-car1.accelerate(20).brake(10).chargeBattery(10);
+var fireAndFury = function (tweet) {
+  const regex = /FIRE|FURY/g;
+  const arr = tweet.match(regex);
+  console.log(arr);
+};
 
-
+fireAndFury("FURYYYFIREYYFIRE"), "I am furious. You and you are fired!";
+fireAndFury("FIREYYFURYYFURYYFURRYFIRE"),
+  "You are fired! I am really furious. You are fired!";
+fireAndFury("FYRYFIRUFIRUFURE"), "Fake tweet.";

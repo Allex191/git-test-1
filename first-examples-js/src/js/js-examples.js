@@ -2,6 +2,38 @@
 "use strict";
 
 
+var fireAndFury = function (tweet) {
+//   // const obj = {
+//   //   FIRE: "You are fired!",
+//   //   FURY: "I am furious.",
+//   //   and: " and you ",
+//   //   real: " really ",
+//   // };
+//   let finString = "";
+//   const regex = tweet.match(/FURY|FIRE/g);
+//   if (!regex) return "Fake tweet";
+
+//   for (let i = 0; i < regex.length; i++) {
+//     const elI = regex[i];
+//     if (elI === "FIRE" && regex[i - 1] !== elI) {
+//     }
+//   }
+// };
+
+// fireAndFury("FURYYYFIREYYFIRE"), "I am furious. You and you are fired!";
+
+// fireAndFury("FIREYYFURYYFURYYFURRYFIRE"),
+//   "You are fired! I am really furious. You are fired!";
+
+// fireAndFury("FYRYFIRUFIRUFURE"), "Fake tweet.";
+
+// //if(x1)you "you are fired"
+// //if(x2)and you  "You and you are fired!"
+
+// //1 daca ii primul fire si daca urmatorul nui fire atunci string1 = You are fired
+
+
+
 // const Person = function (name, age) {
 //   this.name = name;
 //   this.age = age;
