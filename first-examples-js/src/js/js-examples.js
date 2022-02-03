@@ -2,35 +2,117 @@
 "use strict";
 
 
-var fireAndFury = function (tweet) {
-//   // const obj = {
-//   //   FIRE: "You are fired!",
-//   //   FURY: "I am furious.",
-//   //   and: " and you ",
-//   //   real: " really ",
-//   // };
-//   let finString = "";
-//   const regex = tweet.match(/FURY|FIRE/g);
-//   if (!regex) return "Fake tweet";
+// //AJAX call country 1
+// const getCountryAndNeighbour = function (country) {
+//   const request = new XMLHttpRequest();
+//   request.open("GET", `https://restcountries.com/v3.1/name/${country}`);
+//   request.send();
 
-//   for (let i = 0; i < regex.length; i++) {
-//     const elI = regex[i];
-//     if (elI === "FIRE" && regex[i - 1] !== elI) {
-//     }
-//   }
+//   request.addEventListener("load", function () {
+//     if (/404|NOT FOUND/g.test(this.responseText)) return;
+//     const [data] = JSON.parse(this.responseText);
+
+//     renderCountry(data);
+
+//     //get neighbour country (2)
+//     const [neighbour] = data.borders;
+//     if (!neighbour) return;
+
+//     //AJAX call country (2)
+//     const request2 = new XMLHttpRequest();
+//     request2.open("GET", `https://restcountries.com/v3.1/alpha/${neighbour}`);
+//     request2.send();
+//     request2.addEventListener("load", function () {
+//       const [data2] = JSON.parse(this.responseText);
+//       renderCountry(data2, "neighbour");
+//     });
+//   });
 // };
 
-// fireAndFury("FURYYYFIREYYFIRE"), "I am furious. You and you are fired!";
+// getCountryAndNeighbour("moldova");
 
-// fireAndFury("FIREYYFURYYFURYYFURRYFIRE"),
-//   "You are fired! I am really furious. You are fired!";
+// //building a promise with fetch and consume with then
+// const getCountryData = function (country) {
+//   fetch(`https://restcountries.com/v3.1/name/${country}`).then(function (
+//     response
+//   ) {
+//     console.log(response);
+//   });
+// };
 
-// fireAndFury("FYRYFIRUFIRUFURE"), "Fake tweet.";
+// getCountryData("romania");
 
-// //if(x1)you "you are fired"
-// //if(x2)and you  "You and you are fired!"
+// const getNeighborProm = function (prevCountry) {
+//   const neighbor = prevCountry[0].borders[0];
+//   if (!neighbor) return;
+//   const response = fetch(
+//     `https://restcountries.com/v3.1/alpha/${neighbor}`
+//   ).then((response) => response.json());
+//   response.then((data) => renderCountry(data[0], "neighbour"));
+//   return response;
+// };
 
-// //1 daca ii primul fire si daca urmatorul nui fire atunci string1 = You are fired
+// const getCountryData = function (country) {
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then((response) => response.json())
+//     .then((origCountry) => {
+//       renderCountry(origCountry[0]);
+//       return getNeighborProm(origCountry);
+//     });
+//   // .then((data) => getNeighborProm(data));
+// };
+// btn.addEventListener("click", function () {
+//   getCountryData("roumania");
+// });
+
+
+
+var fireAndFury = function (tweet) {
+  const obj = {
+    FIRE1: "You are fired! ",
+    FURY1: "I am furious. ",
+    FIRE2: "You ",
+    FURY2: "I am ",
+    FIRE3: "and you ",
+    FURY3: "really ",
+    FIRE4: "and you are fired! ",
+    FURY4: "really furious. ",
+  };
+  let finString = "";
+  let first = true;
+  const regex = tweet.match(/FURY|FIRE/g);
+  const otherLetter = /[^FURYIE]/g.test(tweet);
+  if (!regex || otherLetter) return "Fake tweet.";
+
+  for (let i = 0; i < regex.length; i++) {
+    const el = regex[i];
+    //if first and next element is not the same
+    if (first && el !== regex[i + 1]) {
+      finString += obj[`${el}1`];
+      first = true;
+      continue;
+    }
+    //if first and next element is the same
+    if (first && el === regex[i + 1]) {
+      finString += obj[`${el}2`];
+      first = false;
+      continue;
+    }
+    //if second and next the same
+    if (!first && el === regex[i + 1]) {
+      finString += obj[`${el}3`];
+      first = false;
+      continue;
+    }
+    //if second and next not the same
+    if (!first && el !== regex[i + 1]) {
+      finString += obj[`${el}4`];
+      first = true;
+      continue;
+    }
+  }
+  return finString.trim();
+};
 
 
 
