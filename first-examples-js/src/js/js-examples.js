@@ -2,6 +2,61 @@
 "use strict";
 
 
+function decipherThis(str) {
+  const map = str.split(" ").map((word) => {
+    const firstLetter = String.fromCharCode(Number.parseInt(word));
+    //if only digits
+    if (word.match(/^\d\d$/g)) {
+      return firstLetter;
+    }
+
+    let localWord = [...word];
+    const lastLetter = localWord.splice(-1, 1);
+    const middlePart = localWord.join("").match(/[^\d]/g);
+
+    if (middlePart) {
+      middlePart.push(middlePart.shift());
+      return firstLetter + lastLetter.join("") + middlePart.join("");
+    } else {
+      return firstLetter + lastLetter.join("");
+    }
+  });
+  return map.join(" ");
+}
+const str1 = "72eva 97 103o 97t 116sih 97dn 115ee 104wo 121uo 100o";
+const str3 = "110croo 111gel 115i 109ia 102isa";
+// console.log(decipherThis(str1));
+// console.log(decipherThis(str3));
+/* 
+
+
+
+
+*/
+// function encryptThis(str) {
+//   const map = str.split(" ").map((word) => {
+//     if (word.length === 1) {
+//       return word.charCodeAt([0]);
+//     }
+//     let localWord = word;
+
+//     const firstLetter = localWord.charCodeAt([0]);
+//     let middleLetters = localWord.slice(1).split("");
+//     const lastLetter = middleLetters.pop() ?? "";
+//     const secondLetter = middleLetters.shift() ?? "";
+
+//     return firstLetter + lastLetter + middleLetters.join("") + secondLetter;
+//   });
+//   return map.join(" ");
+// }
+
+// const encr1 = "A wise old owl lived in an oak";
+// // "65 119esi 111dl 111lw 108dvei 105n 97n 111ka"
+
+// console.log(encryptThis(encr1));
+
+
+
 // //AJAX call country 1
 // const getCountryAndNeighbour = function (country) {
 //   const request = new XMLHttpRequest();
@@ -67,52 +122,52 @@
 
 
 
-var fireAndFury = function (tweet) {
-  const obj = {
-    FIRE1: "You are fired! ",
-    FURY1: "I am furious. ",
-    FIRE2: "You ",
-    FURY2: "I am ",
-    FIRE3: "and you ",
-    FURY3: "really ",
-    FIRE4: "and you are fired! ",
-    FURY4: "really furious. ",
-  };
-  let finString = "";
-  let first = true;
-  const regex = tweet.match(/FURY|FIRE/g);
-  const otherLetter = /[^FURYIE]/g.test(tweet);
-  if (!regex || otherLetter) return "Fake tweet.";
+// var fireAndFury = function (tweet) {
+//   const obj = {
+//     FIRE1: "You are fired! ",
+//     FURY1: "I am furious. ",
+//     FIRE2: "You ",
+//     FURY2: "I am ",
+//     FIRE3: "and you ",
+//     FURY3: "really ",
+//     FIRE4: "and you are fired! ",
+//     FURY4: "really furious. ",
+//   };
+//   let finString = "";
+//   let first = true;
+//   const regex = tweet.match(/FURY|FIRE/g);
+//   const otherLetter = /[^FURYIE]/g.test(tweet);
+//   if (!regex || otherLetter) return "Fake tweet.";
 
-  for (let i = 0; i < regex.length; i++) {
-    const el = regex[i];
-    //if first and next element is not the same
-    if (first && el !== regex[i + 1]) {
-      finString += obj[`${el}1`];
-      first = true;
-      continue;
-    }
-    //if first and next element is the same
-    if (first && el === regex[i + 1]) {
-      finString += obj[`${el}2`];
-      first = false;
-      continue;
-    }
-    //if second and next the same
-    if (!first && el === regex[i + 1]) {
-      finString += obj[`${el}3`];
-      first = false;
-      continue;
-    }
-    //if second and next not the same
-    if (!first && el !== regex[i + 1]) {
-      finString += obj[`${el}4`];
-      first = true;
-      continue;
-    }
-  }
-  return finString.trim();
-};
+//   for (let i = 0; i < regex.length; i++) {
+//     const el = regex[i];
+//     //if first and next element is not the same
+//     if (first && el !== regex[i + 1]) {
+//       finString += obj[`${el}1`];
+//       first = true;
+//       continue;
+//     }
+//     //if first and next element is the same
+//     if (first && el === regex[i + 1]) {
+//       finString += obj[`${el}2`];
+//       first = false;
+//       continue;
+//     }
+//     //if second and next the same
+//     if (!first && el === regex[i + 1]) {
+//       finString += obj[`${el}3`];
+//       first = false;
+//       continue;
+//     }
+//     //if second and next not the same
+//     if (!first && el !== regex[i + 1]) {
+//       finString += obj[`${el}4`];
+//       first = true;
+//       continue;
+//     }
+//   }
+//   return finString.trim();
+// };
 
 
 
@@ -500,142 +555,142 @@ var fireAndFury = function (tweet) {
 
 
 
-function encrypt(text, n) {
-  if (text === null || n <= 0) {
-    return text;
-  }
-  let leftHalf = "";
-  let rightHalf = "";
-  let fullText = text;
+// function encrypt(text, n) {
+//   if (text === null || n <= 0) {
+//     return text;
+//   }
+//   let leftHalf = "";
+//   let rightHalf = "";
+//   let fullText = text;
 
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < fullText.length; j++) {
-      const element = fullText[j];
-      if (j % 2 !== 0) {
-        leftHalf += element;
-      } else {
-        rightHalf += element;
-      }
-    }
+//   for (let i = 0; i < n; i++) {
+//     for (let j = 0; j < fullText.length; j++) {
+//       const element = fullText[j];
+//       if (j % 2 !== 0) {
+//         leftHalf += element;
+//       } else {
+//         rightHalf += element;
+//       }
+//     }
 
-    fullText = leftHalf + rightHalf;
-    leftHalf = "";
-    rightHalf = "";
-  }
+//     fullText = leftHalf + rightHalf;
+//     leftHalf = "";
+//     rightHalf = "";
+//   }
 
-  return fullText;
-}
+//   return fullText;
+// }
 
-function decrypt(encryptedText, n) {
-  if (encryptedText === null || n <= 0) {
-    return encryptedText;
-  }
+// function decrypt(encryptedText, n) {
+//   if (encryptedText === null || n <= 0) {
+//     return encryptedText;
+//   }
 
-  let leftHalf, rightHalf;
-  let fullText = encryptedText;
-  let halfIndex = Math.floor(encryptedText.length / 2);
+//   let leftHalf, rightHalf;
+//   let fullText = encryptedText;
+//   let halfIndex = Math.floor(encryptedText.length / 2);
 
-  for (let j = 0; j < n; j++) {
-    leftHalf = fullText.slice(0, halfIndex);
-    rightHalf = fullText.slice(halfIndex);
-    fullText = "";
+//   for (let j = 0; j < n; j++) {
+//     leftHalf = fullText.slice(0, halfIndex);
+//     rightHalf = fullText.slice(halfIndex);
+//     fullText = "";
 
-    for (let i = 0; i < Math.ceil(encryptedText.length / 2); i++) {
-      fullText += rightHalf[i];
+//     for (let i = 0; i < Math.ceil(encryptedText.length / 2); i++) {
+//       fullText += rightHalf[i];
 
-      if (typeof leftHalf[i] !== "undefined") {
-        fullText += leftHalf[i];
-      }
-    }
-  }
+//       if (typeof leftHalf[i] !== "undefined") {
+//         fullText += leftHalf[i];
+//       }
+//     }
+//   }
 
-  return fullText;
-}
+//   return fullText;
+// }
 
-const text1 = "1234567890";
-const lvls = 1;
+// const text1 = "1234567890";
+// const lvls = 1;
 
-const paswword1 = encrypt(text1, lvls);
-const paswword1Decrypted = decrypt(paswword1, lvls);
+// const paswword1 = encrypt(text1, lvls);
+// const paswword1Decrypted = decrypt(paswword1, lvls);
 
-console.log("encrypted--", paswword1);
-console.log("decrypted--", paswword1Decrypted);
-
-
-function Xbonacci(signature, n) {
-  let newArr = [...signature];
-
-  if (n < signature.length) {
-    for (let i = 0; i < signature.length - n; i++) {
-      newArr.pop();
-    }
-  }
-
-  for (let j = 0; j < n - signature.length; j++) {
-    const sum = newArr.reduce((prev, cur, locI) => {
-      if (locI >= j) {
-        return prev + cur;
-      } else {
-        return 0;
-      }
-    }, 0);
-    newArr.push(sum);
-  }
-  return newArr;
-}
-
-//personal time 1h10m
-function findEvenIndex(arr) {
-  let leftSum = 0;
-  let rightSum = arr.reduce((prev, cur) => prev + cur, 0);
-
-  for (let i = 0; i < arr.length; i++) {
-    const element = arr[i];
-
-    rightSum = rightSum - element;
-
-    if (rightSum === leftSum) {
-      return i;
-    }
-    leftSum += element;
-  }
-
-  return -1;
-}
+// console.log("encrypted--", paswword1);
+// console.log("decrypted--", paswword1Decrypted);
 
 
-//personal time 1h10m
-function findEvenIndex(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    const element = arr[i];
+// function Xbonacci(signature, n) {
+//   let newArr = [...signature];
 
-    let rightSum = 0;
-    let leftSum = 0;
-    rightSum = arr.reduce((prev, cur, locI) => {
-      if (locI > i) {
-        return prev + cur;
-      } else {
-        leftSum += prev + cur;
-        return 0;
-      }
-    }, -element);
+//   if (n < signature.length) {
+//     for (let i = 0; i < signature.length - n; i++) {
+//       newArr.pop();
+//     }
+//   }
 
-    if (rightSum === leftSum) {
-      return i;
-    }
-  }
+//   for (let j = 0; j < n - signature.length; j++) {
+//     const sum = newArr.reduce((prev, cur, locI) => {
+//       if (locI >= j) {
+//         return prev + cur;
+//       } else {
+//         return 0;
+//       }
+//     }, 0);
+//     newArr.push(sum);
+//   }
+//   return newArr;
+// }
 
-  return -1;
-}
+// //personal time 1h10m
+// function findEvenIndex(arr) {
+//   let leftSum = 0;
+//   let rightSum = arr.reduce((prev, cur) => prev + cur, 0);
 
-const arr1 = [1, 2, 3, 4, 3, 2, 1]; // index 3
-const arr2 = [1, 2, 3, 4, 5, 6]; //-1
-const arr3 = [20, 10, -80, 10, 10, 15, 35]; //0  because  20 at index 0 == right side of 20
-const arr4 = [1, 100, 50, -51, 1, 1];
-console.log(findEvenIndex(arr1));
-console.log(findEvenIndex(arr2));
-console.log(findEvenIndex(arr3));
-console.log(findEvenIndex(arr4));
+//   for (let i = 0; i < arr.length; i++) {
+//     const element = arr[i];
+
+//     rightSum = rightSum - element;
+
+//     if (rightSum === leftSum) {
+//       return i;
+//     }
+//     leftSum += element;
+//   }
+
+//   return -1;
+// }
+
+
+// //personal time 1h10m
+// function findEvenIndex(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     const element = arr[i];
+
+//     let rightSum = 0;
+//     let leftSum = 0;
+//     rightSum = arr.reduce((prev, cur, locI) => {
+//       if (locI > i) {
+//         return prev + cur;
+//       } else {
+//         leftSum += prev + cur;
+//         return 0;
+//       }
+//     }, -element);
+
+//     if (rightSum === leftSum) {
+//       return i;
+//     }
+//   }
+
+//   return -1;
+// }
+
+// const arr1 = [1, 2, 3, 4, 3, 2, 1]; // index 3
+// const arr2 = [1, 2, 3, 4, 5, 6]; //-1
+// const arr3 = [20, 10, -80, 10, 10, 15, 35]; //0  because  20 at index 0 == right side of 20
+// const arr4 = [1, 100, 50, -51, 1, 1];
+// console.log(findEvenIndex(arr1));
+// console.log(findEvenIndex(arr2));
+// console.log(findEvenIndex(arr3));
+// console.log(findEvenIndex(arr4));
 
 // function findEvenIndex(arr) {
 //   let itemSumLeft = 0;
@@ -683,62 +738,62 @@ console.log(findEvenIndex(arr4));
 //   return sum;
 // }
 
-function stockList(listOfArt, listOfCat) {
-  const map = new Map();
-  let finishedArr = "";
+// function stockList(listOfArt, listOfCat) {
+//   const map = new Map();
+//   let finishedArr = "";
 
-  for (let i = 0; i < listOfCat.length; i++) {
-    const arrLetter = listOfCat[i];
-    for (let j = 0; j < listOfArt.length; j++) {
-      const code = listOfArt[j];
+//   for (let i = 0; i < listOfCat.length; i++) {
+//     const arrLetter = listOfCat[i];
+//     for (let j = 0; j < listOfArt.length; j++) {
+//       const code = listOfArt[j];
 
-      if (arrLetter === code[0]) {
-        const outerNumber = +code.slice(code.indexOf(" "));
-        if (map.has(arrLetter)) {
-          const mapNumber = map.get(arrLetter);
-          map.set(arrLetter, mapNumber + outerNumber);
-        } else {
-          map.set(arrLetter, outerNumber);
-        }
-      }
+//       if (arrLetter === code[0]) {
+//         const outerNumber = +code.slice(code.indexOf(" "));
+//         if (map.has(arrLetter)) {
+//           const mapNumber = map.get(arrLetter);
+//           map.set(arrLetter, mapNumber + outerNumber);
+//         } else {
+//           map.set(arrLetter, outerNumber);
+//         }
+//       }
 
-      if (j === listOfArt.length - 2 && !map.has(arrLetter)) {
-        map.set(arrLetter, 0);
-      }
-    }
-  }
+//       if (j === listOfArt.length - 2 && !map.has(arrLetter)) {
+//         map.set(arrLetter, 0);
+//       }
+//     }
+//   }
 
-  map.forEach((el, key) => {
-    if (key === listOfCat[listOfCat.length - 1]) {
-      finishedArr += `(${key} : ${el})`;
-    } else {
-      finishedArr += `(${key} : ${el}) - `;
-    }
-  });
-  return finishedArr;
-}
+//   map.forEach((el, key) => {
+//     if (key === listOfCat[listOfCat.length - 1]) {
+//       finishedArr += `(${key} : ${el})`;
+//     } else {
+//       finishedArr += `(${key} : ${el}) - `;
+//     }
+//   });
+//   return finishedArr;
+// }
 
-function order(words) {
-  if (words === "") {
-    return "";
-  }
-  const localWordsArr = words.split(" ");
-  const obj = {};
-  const finishedArr = [];
+// function order(words) {
+//   if (words === "") {
+//     return "";
+//   }
+//   const localWordsArr = words.split(" ");
+//   const obj = {};
+//   const finishedArr = [];
 
-  for (const word of localWordsArr) {
-    for (const char of word) {
-      if (!isNaN(char)) {
-        obj[char] = word;
-      }
-    }
-  }
+//   for (const word of localWordsArr) {
+//     for (const char of word) {
+//       if (!isNaN(char)) {
+//         obj[char] = word;
+//       }
+//     }
+//   }
 
-  for (const key in obj) {
-    finishedArr.push(obj[key]);
-  }
-  return finishedArr.join(" ");
-}
+//   for (const key in obj) {
+//     finishedArr.push(obj[key]);
+//   }
+//   return finishedArr.join(" ");
+// }
 
 // function solution(str, ending) {
 //   const localStr = str.slice(-ending.length);
@@ -795,7 +850,7 @@ function order(words) {
 // //to fixed is taking only number and converting with round to strings
 // (2.7).toFixed(); // 3 *string
 // (-2.7).toFixed(); // -3 *string
- */
+ 
 // let str = "One bot of another";
 
 // const oneWord = function (str) {

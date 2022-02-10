@@ -1,3 +1,7 @@
+//import polyfiling
+import "core-js/stable";
+//polifiling async function
+import "regenerator-runtime/runtime";
 //import named
 import { add } from "./shopCart.js";
 import { mainFood as food } from "./shopCart.js";
@@ -14,10 +18,8 @@ const copied = cloneDeep(defaulObj);
 console.log(copied);
 
 //maintain page state do not full reload page
-if (module.hot) {
-  module.hot.accept();
-}
-/* 
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
-
-*/
+Promise.resolve("test acsacscascacsacs").then((x) => console.log(x));
